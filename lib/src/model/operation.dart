@@ -52,12 +52,13 @@ class Operation {
           json['requestBody'] != null
               ? RequestBody.fromJson(
                 json['requestBody'] as Map<String, dynamic>,
+                version: version,
               )
               : null,
       responses: (json['responses'] as Map? ?? {}).map(
         (key, value) => MapEntry(
           key as String,
-          Response.fromJson(value as Map<String, dynamic>),
+          Response.fromJson(value as Map<String, dynamic>, version: version),
         ),
       ),
       security:
@@ -115,7 +116,7 @@ class Operation {
       if (summary != null) 'summary': summary,
       if (description != null) 'description': description,
       if (operationId != null) 'operationId': operationId,
-      if (parameters.isNotEmpty || version == OpenApiVersion.v2)
+      if (parameters.isNotEmpty || version == OpenApiVersion.v20)
         'parameters': parameters.map((e) => e.toJson()).toList(),
       if (requestBody != null) 'requestBody': requestBody!.toJson(),
       if (responses.isNotEmpty)

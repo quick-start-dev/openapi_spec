@@ -8,8 +8,8 @@ import 'package:openapi_spec/src/util/enums.dart';
 
 /// An object to hold reusable objects for the specification.
 ///
-/// This class represents the `components` section of an OpenAPI document,
-/// where reusable schemas, responses, parameters, and other objects are defined.
+/// This class represents the `components` section of an OpenAPI document, where
+/// reusable schemas, responses, parameters, and other objects are defined.
 @immutable
 class Components {
   /// Creates a [Components] object.
@@ -32,13 +32,13 @@ class Components {
       schemas: (json['schemas'] as Map? ?? {}).map(
         (key, value) => MapEntry(
           key as String,
-          Schema.fromJson(value as Map<String, dynamic>),
+          Schema.fromJson(value as Map<String, dynamic>, version: version),
         ),
       ),
       responses: (json['responses'] as Map? ?? {}).map(
         (key, value) => MapEntry(
           key as String,
-          Response.fromJson(value as Map<String, dynamic>),
+          Response.fromJson(value as Map<String, dynamic>, version: version),
         ),
       ),
       parameters: (json['parameters'] as Map? ?? {}).map(
@@ -50,7 +50,7 @@ class Components {
       requestBodies: (json['requestBodies'] as Map? ?? {}).map(
         (key, value) => MapEntry(
           key as String,
-          RequestBody.fromJson(value as Map<String, dynamic>),
+          RequestBody.fromJson(value as Map<String, dynamic>, version: version),
         ),
       ),
       securitySchemes: (json['securitySchemes'] as Map? ?? {}).map(

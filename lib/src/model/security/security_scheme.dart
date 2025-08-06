@@ -58,7 +58,8 @@ class SecurityScheme {
   /// This field is only relevant for `apiKey` type.
   final ParameterLocation? location;
 
-  /// The name of the HTTP Authorization scheme to be used in the Authorization header.
+  /// The name of the HTTP Authorization scheme to be used in
+  /// the Authorization header.
   ///
   /// This field is only relevant for `http` type.
   final String? scheme;

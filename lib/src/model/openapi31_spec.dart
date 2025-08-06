@@ -22,10 +22,17 @@ class OpenApi31Spec extends BaseOpenApiSpec {
     super.tags = const [],
     this.components,
     this.webhooks = const {},
+    super.extensions,
   });
 
   /// Creates an [OpenApi31Spec] from a JSON-like map.
   factory OpenApi31Spec.fromJson(Map<String, dynamic> json) {
+    final extensions = <String, dynamic>{};
+    json.forEach((key, value) {
+      if (key.startsWith('x-')) {
+        extensions[key] = value;
+      }
+    });
     return OpenApi31Spec(
       openapi: json['openapi'] as String,
       info:
@@ -74,6 +81,7 @@ class OpenApi31Spec extends BaseOpenApiSpec {
                 ),
               )
               : null,
+      extensions: extensions,
     );
   }
 

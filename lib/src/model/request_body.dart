@@ -1,5 +1,6 @@
 import 'package:meta/meta.dart';
 import 'package:openapi_spec/src/model/media_type.dart';
+import 'package:openapi_spec/src/util/enums.dart';
 
 /// Describes a single request body.
 ///
@@ -15,14 +16,17 @@ class RequestBody {
   });
 
   /// Creates a [RequestBody] from a JSON object.
-  factory RequestBody.fromJson(Map<String, dynamic> json) {
+  factory RequestBody.fromJson(
+    Map<String, dynamic> json, {
+    required OpenApiVersion version,
+  }) {
     return RequestBody(
       description: json['description'] as String?,
       required: json['required'] as bool? ?? false,
       content: (json['content'] as Map? ?? {}).map(
         (key, value) => MapEntry(
           key as String,
-          MediaType.fromJson(value as Map<String, dynamic>),
+          MediaType.fromJson(value as Map<String, dynamic>, version: version),
         ),
       ),
     );

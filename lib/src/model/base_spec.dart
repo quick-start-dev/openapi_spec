@@ -15,6 +15,7 @@ abstract class BaseOpenApiSpec {
     required this.openapi,
     this.externalDocs,
     this.info,
+    this.extensions,
   });
 
   /// The version of the OpenAPI specification.
@@ -32,6 +33,9 @@ abstract class BaseOpenApiSpec {
   /// External documentation for the API.
   final ExternalDocs? externalDocs;
 
+  /// Vendor extensions.
+  final Map<String, dynamic>? extensions;
+
   /// Gets the OpenAPI version from the [openapi] string.
   OpenApiVersion get version {
     if (openapi.startsWith('3.0')) {
@@ -39,18 +43,19 @@ abstract class BaseOpenApiSpec {
     } else if (openapi.startsWith('3.1')) {
       return OpenApiVersion.v31;
     } else {
-      return OpenApiVersion.v2;
+      return OpenApiVersion.v20;
     }
   }
 
   /// Converts this [BaseOpenApiSpec] object to a JSON map.
   Map<String, dynamic> toJson() {
     return {
-      version == OpenApiVersion.v2 ? 'swagger' : 'openapi': openapi,
+      version == OpenApiVersion.v20 ? 'swagger' : 'openapi': openapi,
       if (info != null) 'info': info?.toJson(),
       if (externalDocs != null) 'externalDocs': externalDocs?.toJson(),
       'tags': tags.map((e) => e.toJson()).toList(),
       'paths': paths.map((key, value) => MapEntry(key, value.toJson())),
+      if (extensions != null) ...extensions!,
     };
   }
 }
@@ -126,11 +131,18 @@ class Info {
     this.contact,
     this.license,
     this.summary,
-    this.xNamespace,
+    this.extensions,
   });
 
   /// Creates an [Info] from a JSON object.
   factory Info.fromJson(Map<String, dynamic> json) {
+    // Collect all vendor extensions (keys starting with 'x-')
+    final extensions = <String, dynamic>{};
+    json.forEach((key, value) {
+      if (key.startsWith('x-')) {
+        extensions[key] = value;
+      }
+    });
     return Info(
       title: json['title'] as String,
       version: json['version'] as String,
@@ -145,7 +157,7 @@ class Info {
               ? License.fromJson(json['license'] as Map<String, dynamic>)
               : null,
       summary: json['summary'] as String?,
-      xNamespace: json['x-namespace'] as String?,
+      extensions: extensions.isNotEmpty ? extensions : null,
     );
   }
 
@@ -170,8 +182,8 @@ class Info {
   /// A short summary of the API.
   final String? summary;
 
-  /// An optional vendor extension for the namespace.
-  final String? xNamespace;
+  /// Vendor extensions.
+  final Map<String, dynamic>? extensions;
 
   /// Converts this [Info] object to a JSON map.
   Map<String, dynamic> toJson() {
@@ -181,7 +193,7 @@ class Info {
     if (contact != null) map['contact'] = contact!.toJson();
     if (license != null) map['license'] = license!.toJson();
     if (summary != null) map['summary'] = summary;
-    if (xNamespace != null) map['x-namespace'] = xNamespace;
+    if (extensions != null) map.addAll(extensions!);
     return map;
   }
 }

@@ -1,7 +1,7 @@
 // Utility for converting YAML to a Dart map.
 
-import 'package:yaml/yaml.dart';
 import 'package:meta/meta.dart';
+import 'package:yaml/yaml.dart';
 
 /// Internal utility to convert a YAML string to a Dart map.
 @internal

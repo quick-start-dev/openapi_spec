@@ -28,10 +28,17 @@ class OpenApi20Spec extends BaseOpenApiSpec {
     this.security = const [],
     super.externalDocs,
     super.tags = const [],
+    super.extensions,
   }) : super(openapi: swagger);
 
   /// Creates an [OpenApi20Spec] from a JSON-like map.
   factory OpenApi20Spec.fromJson(Map<String, dynamic> json) {
+    final extensions = <String, dynamic>{};
+    json.forEach((key, value) {
+      if (key.startsWith('x-')) {
+        extensions[key] = value;
+      }
+    });
     return OpenApi20Spec(
       swagger: json['swagger'] as String,
       info:
@@ -48,14 +55,17 @@ class OpenApi20Spec extends BaseOpenApiSpec {
           key as String,
           Path.fromJson(
             value as Map<String, dynamic>,
-            version: OpenApiVersion.v2,
+            version: OpenApiVersion.v20,
           ),
         ),
       ),
       definitions: (json['definitions'] as Map? ?? {}).map(
         (key, value) => MapEntry(
           key as String,
-          Schema.fromJson(value as Map<String, dynamic>),
+          Schema.fromJson(
+            value as Map<String, dynamic>,
+            version: OpenApiVersion.v20,
+          ),
         ),
       ),
       securityDefinitions: (json['securityDefinitions'] as Map? ?? {}).map(
@@ -80,6 +90,7 @@ class OpenApi20Spec extends BaseOpenApiSpec {
               : ExternalDocs.fromJson(
                 json['externalDocs'] as Map<String, dynamic>,
               ),
+      extensions: extensions,
     );
   }
 

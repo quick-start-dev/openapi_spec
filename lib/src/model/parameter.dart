@@ -11,8 +11,9 @@ import 'package:openapi_spec/src/util/helpers.dart';
 class Parameter {
   /// Creates a [Parameter] object.
   const Parameter({
-    required this.name,
     required this.version,
+    this.ref,
+    this.name,
     this.location,
     this.description,
     this.required = false,
@@ -32,6 +33,10 @@ class Parameter {
     Map<String, dynamic> json, {
     required OpenApiVersion version,
   }) {
+    if (json.containsKey(r'$ref')) {
+      return Parameter(ref: json[r'$ref'] as String?, version: version);
+    }
+
     return Parameter(
       version: version,
       name: json['name'] as String,
@@ -44,14 +49,20 @@ class Parameter {
       deprecated: json['deprecated'] as bool? ?? false,
       schema:
           json['schema'] != null
-              ? Schema.fromJson(json['schema'] as Map<String, dynamic>)
+              ? Schema.fromJson(
+                json['schema'] as Map<String, dynamic>,
+                version: version,
+              )
               : null,
       type: json['type'] as String?,
       format: json['format'] as String?,
       collectionFormat: json['collectionFormat'] as String?,
       items:
           json['items'] != null
-              ? Schema.fromJson(json['items'] as Map<String, dynamic>)
+              ? Schema.fromJson(
+                json['items'] as Map<String, dynamic>,
+                version: version,
+              )
               : null,
       maximum: numOrNull(json['maximum']),
       minimum: numOrNull(json['minimum']),
@@ -63,7 +74,7 @@ class Parameter {
   final OpenApiVersion version;
 
   /// The name of the parameter.
-  final String name;
+  final String? name;
 
   /// The location of the parameter, typically `query`, `header`, `path`,
   /// or `cookie`.
@@ -102,8 +113,17 @@ class Parameter {
   /// Specifies whether array or object parameters should be exploded.
   final bool? explode;
 
+  /// A reference to a Parameter Object, typically in the `components`
+  /// section. If this field is non-null, all other fields must be null.
+  final String? ref;
+
   /// Converts this [Parameter] object to a JSON map.
   Map<String, dynamic> toJson() {
+    // A Reference Object can only contain a $ref field.
+    if (ref != null) {
+      return {r'$ref': ref};
+    }
+
     return {
       'name': name,
       if (location != null) 'in': location!.name,

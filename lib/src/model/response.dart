@@ -1,6 +1,7 @@
 import 'package:meta/meta.dart';
 import 'package:openapi_spec/src/model/media_type.dart';
 import 'package:openapi_spec/src/model/schema.dart';
+import 'package:openapi_spec/src/util/enums.dart';
 
 /// Describes a single API response.
 ///
@@ -13,27 +14,37 @@ class Response {
     required this.description,
     this.content = const {},
     this.schema,
+    this.$ref,
     this.headers = const {},
   });
 
   /// Creates a [Response] from a JSON object.
-  factory Response.fromJson(Map<String, dynamic> json) {
+  factory Response.fromJson(
+    Map<String, dynamic> json, {
+    required OpenApiVersion version,
+  }) {
+    if (json[r'$ref'] != null) {
+      return Response($ref: json[r'$ref'] as String, description: '');
+    }
     return Response(
       description: json['description'] as String,
       schema:
           json['schema'] != null
-              ? Schema.fromJson(json['schema'] as Map<String, dynamic>)
+              ? Schema.fromJson(
+                json['schema'] as Map<String, dynamic>,
+                version: version,
+              )
               : null,
       content: (json['content'] as Map? ?? {}).map(
         (key, value) => MapEntry(
           key as String,
-          MediaType.fromJson(value as Map<String, dynamic>),
+          MediaType.fromJson(value as Map<String, dynamic>, version: version),
         ),
       ),
       headers: (json['headers'] as Map? ?? {}).map(
         (key, value) => MapEntry(
           key as String,
-          Header.fromJson(value as Map<String, dynamic>),
+          Header.fromJson(value as Map<String, dynamic>, version: version),
         ),
       ),
     );
@@ -51,8 +62,14 @@ class Response {
   /// A map of headers for this response.
   final Map<String, Header> headers;
 
+  /// The reference to the response schema.
+  final String? $ref;
+
   /// Converts this [Response] object to a JSON map.
   Map<String, dynamic> toJson() {
+    if ($ref != null) {
+      return {r'$ref': $ref};
+    }
     return {
       'description': description,
       if (content.isNotEmpty)
@@ -76,14 +93,24 @@ class Header {
     this.type,
     this.format,
     this.schema,
+    this.$ref,
   });
 
   /// Creates a [Header] from a JSON object.
-  factory Header.fromJson(Map<String, dynamic> json) {
+  factory Header.fromJson(
+    Map<String, dynamic> json, {
+    required OpenApiVersion version,
+  }) {
+    if (json[r'$ref'] != null) {
+      return Header($ref: json[r'$ref'] as String, description: '');
+    }
     return Header(
       schema:
           json['schema'] != null
-              ? Schema.fromJson(json['schema'] as Map<String, dynamic>)
+              ? Schema.fromJson(
+                json['schema'] as Map<String, dynamic>,
+                version: version,
+              )
               : null,
       description: json['description'] as String,
       type: json['type'] as String?,
@@ -103,8 +130,14 @@ class Header {
   /// The schema for the header value (for OpenAPI 3.0).
   final Schema? schema;
 
+  /// The reference to the header value
+  final String? $ref;
+
   /// Converts this [Header] object to a JSON map.
   Map<String, dynamic> toJson() {
+    if ($ref != null) {
+      return {r'$ref': $ref};
+    }
     return {
       'description': description,
       if (type != null) 'type': type,

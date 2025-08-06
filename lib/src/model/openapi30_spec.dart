@@ -21,10 +21,17 @@ class OpenApi30Spec extends BaseOpenApiSpec {
     this.components,
     super.externalDocs,
     super.tags = const [],
+    super.extensions,
   });
 
   /// Creates an [OpenApi30Spec] from a JSON-like map.
   factory OpenApi30Spec.fromJson(Map<String, dynamic> json) {
+    final extensions = <String, dynamic>{};
+    json.forEach((key, value) {
+      if (key.startsWith('x-')) {
+        extensions[key] = value;
+      }
+    });
     return OpenApi30Spec(
       openapi: json['openapi'] as String,
       info:
@@ -61,6 +68,7 @@ class OpenApi30Spec extends BaseOpenApiSpec {
                 json['externalDocs'] as Map<String, dynamic>,
               )
               : null,
+      extensions: extensions,
     );
   }
 
