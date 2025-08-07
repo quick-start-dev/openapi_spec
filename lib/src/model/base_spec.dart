@@ -60,6 +60,7 @@ abstract class BaseOpenApiSpec {
   }
 }
 
+
 /// Represents the contact information for the API.
 class Contact {
   /// Creates a [Contact] object.

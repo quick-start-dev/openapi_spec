@@ -12,6 +12,11 @@
 # The core lints are also what is used by pub.dev for scoring packages.
 
 include: package:very_good_analysis/analysis_options.yaml
+analyzer:
+  errors:
+    invalid_annotation_target: ignore
+    avoid_dynamic_calls: ignore
+    unused_element: ignore
 
 # Uncomment the following section to specify additional rules.
 

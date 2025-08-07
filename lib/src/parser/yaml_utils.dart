@@ -19,7 +19,7 @@ Map<String, dynamic> yamlToMap(String yamlString) {
 Map<String, dynamic> _convertYamlMapToDartMap(YamlMap yamlMap) {
   final map = <String, dynamic>{};
   for (final entry in yamlMap.entries) {
-    map[entry.key as String] = _convertYamlNodeToDart(entry.value);
+    map[entry.key.toString()] = _convertYamlNodeToDart(entry.value);
   }
   return map;
 }

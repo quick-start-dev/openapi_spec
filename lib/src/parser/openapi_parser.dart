@@ -6,6 +6,7 @@ import 'package:openapi_spec/src/model/openapi30_spec.dart';
 import 'package:openapi_spec/src/model/openapi31_spec.dart';
 import 'package:openapi_spec/src/parser/exceptions.dart';
 import 'package:openapi_spec/src/parser/yaml_utils.dart';
+import 'package:yaml_writer/yaml_writer.dart';
 
 /// Utility class to parse OpenAPI specs from strings.
 class OpenApiParser {
@@ -16,11 +17,23 @@ class OpenApiParser {
     return _parseDocument(document);
   }
 
+  /// Serializes a [BaseOpenApiSpec] object to a formatted JSON string.
+  static String toJsonString(BaseOpenApiSpec spec) {
+    const encoder = JsonEncoder.withIndent('  ');
+    return encoder.convert(spec);
+  }
+
   /// Parses a YAML OpenAPI spec from a string.
   /// Throws a parsing error if the content is not valid YAML.
   static BaseOpenApiSpec parseYaml(String content) {
     final document = yamlToMap(content);
     return _parseDocument(document);
+  }
+
+  /// Serializes a [BaseOpenApiSpec] object to a YAML string.
+  static String toYamlString(BaseOpenApiSpec spec) {
+    final yamlWriter = YamlWriter();
+    return yamlWriter.write(spec.toJson());
   }
 
   /// Private helper method to handle version-specific parsing.

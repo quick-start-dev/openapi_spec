@@ -20,6 +20,7 @@ class Components {
     this.parameters = const {},
     this.requestBodies = const {},
     this.securitySchemes = const {},
+    this.headers = const {},
   });
 
   /// Creates a [Components] object from a JSON map.
@@ -59,6 +60,12 @@ class Components {
           SecurityScheme.fromJson(value as Map<String, dynamic>),
         ),
       ),
+      headers: (json['headers'] as Map? ?? {}).map(
+        (key, value) => MapEntry(
+          key as String,
+          Header.fromJson(value as Map<String, dynamic>, version: version),
+        ),
+      ),
     );
   }
 
@@ -76,6 +83,9 @@ class Components {
 
   /// The security schemes available for reuse.
   final Map<String, SecurityScheme> securitySchemes;
+
+  /// The headers available for reuse.
+  final Map<String, Header> headers;
 
   /// The OpenAPI version.
   final OpenApiVersion version;
@@ -101,6 +111,8 @@ class Components {
         'securitySchemes': securitySchemes.map(
           (key, value) => MapEntry(key, value.toJson()),
         ),
+      if (headers.isNotEmpty)
+        'headers': headers.map((key, value) => MapEntry(key, value.toJson())),
     };
   }
 }

@@ -1,0 +1,24 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:openapi_spec/v20/external_docs.dart';
+
+part 'tag.freezed.dart';
+part 'tag.g.dart';
+
+/// Represents a tag used for grouping API operations.
+@Freezed(copyWith: true, fromJson: true, toJson: true, equal: true)
+abstract class Tag with _$Tag {
+  /// Creates a [Tag] object.
+  const factory Tag({
+    /// The name of the tag.
+    required String name,
+
+    /// A short description for the tag.
+    @JsonKey(includeIfNull: false) String? description,
+
+    /// External documentation for this tag.
+    @JsonKey(includeIfNull: false) ExternalDocs? externalDocs,
+  }) = _Tag;
+
+  /// Creates a [Tag] from a JSON object.
+  factory Tag.fromJson(Map<String, dynamic> json) => _$TagFromJson(json);
+}
