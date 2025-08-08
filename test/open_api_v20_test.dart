@@ -159,7 +159,6 @@ void main() {
         );
       }
       // definitions
-
       expect(spec.definitions.length, orgJson['definitions'].length);
       for (var i = 0; i < spec.definitions.length; i++) {
         final key = spec.definitions.keys.toList()[i];

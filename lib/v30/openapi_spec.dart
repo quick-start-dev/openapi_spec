@@ -26,7 +26,8 @@ abstract class OpenAPI with _$OpenAPI {
     /// Metadata about the API.
     Info? info,
 
-    /// An array of Server Objects, which provide connectivity information to a target server.
+    /// An array of Server Objects, which provide connectivity information
+    /// to a target server.
     @Default([]) List<Server> servers,
 
     /// The available paths and their operations.

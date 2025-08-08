@@ -18,7 +18,8 @@ mixin _$OpenAPI {
 /// The version of the OpenAPI specification.
 /// A semver string which MUST begin with 3.0.
  String get openapi;/// Metadata about the API.
- Info? get info;/// An array of Server Objects, which provide connectivity information to a target server.
+ Info? get info;/// An array of Server Objects, which provide connectivity information
+/// to a target server.
  List<Server> get servers;/// The available paths and their operations.
  Map<String, PathItem> get paths;/// An element to hold reusable objects for the specification.
  Components? get components;/// A declaration of which security schemes are required for the entire API.
@@ -269,9 +270,11 @@ class _OpenAPI extends OpenAPI {
 @override@JsonKey() final  String openapi;
 /// Metadata about the API.
 @override final  Info? info;
-/// An array of Server Objects, which provide connectivity information to a target server.
+/// An array of Server Objects, which provide connectivity information
+/// to a target server.
  final  List<Server> _servers;
-/// An array of Server Objects, which provide connectivity information to a target server.
+/// An array of Server Objects, which provide connectivity information
+/// to a target server.
 @override@JsonKey() List<Server> get servers {
   if (_servers is EqualUnmodifiableListView) return _servers;
   // ignore: implicit_dynamic_type

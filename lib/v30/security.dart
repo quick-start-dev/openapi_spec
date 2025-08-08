@@ -71,8 +71,10 @@ class SecurityRequirement {
   int get hashCode => name.hashCode ^ _equality.hash(scopes);
 }
 
-/// Represents a single security scheme object for OpenAPI 2.0.
-@Freezed(copyWith: true, fromJson: true, toJson: true, equal: true)
+/// Defines a security scheme that can be used by the operations.
+///
+/// This class is for OpenAPI 3.0.
+@Freezed(copyWith: true, fromJson: true, toJson: false, equal: true)
 abstract class SecurityScheme with _$SecurityScheme {
   /// Creates a [SecurityScheme] object.
   @JsonSerializable(includeIfNull: false, explicitToJson: true)
@@ -89,24 +91,90 @@ abstract class SecurityScheme with _$SecurityScheme {
     /// The location of the API key.
     @JsonKey(name: 'in') ParameterLocation? location,
 
-    /// The name of the HTTP Authorization scheme to be used in
-    /// the Authorization header.
+    /// The name of the HTTP Authentication scheme.
     String? scheme,
 
-    /// A hint to the client to identify the bearer token scheme.
+    /// A hint to the client to identify the bearer token format.
     String? bearerFormat,
 
-    /// The flow used by the OAuth2 security scheme.
-    String? flow,
+    /// Configuration information for the flow types supported.
+    OAuthFlows? flows,
+
+    /// Well-known URL to discover the OpenID Connect provider metadata.
+    String? openIdConnectUrl,
+
+    /// A map of OpenAPI extensions.
+    @JsonKey(includeToJson: false, includeFromJson: false)
+    Map<String, dynamic>? extensions,
+  }) = _SecurityScheme;
+  const SecurityScheme._();
+
+  /// Creates a [SecurityScheme] from a JSON object.
+  factory SecurityScheme.fromJson(Map<String, dynamic> json) {
+    final extensions = <String, dynamic>{};
+    json.forEach((key, value) {
+      if (key.startsWith('x-')) {
+        extensions[key] = value;
+      }
+    });
+
+    return _$SecuritySchemeFromJson(json).copyWith(extensions: extensions);
+  }
+
+  /// Converts this [SecurityScheme] object to a JSON map.
+  Map<String, dynamic> toJson() {
+    final json = _$SecuritySchemeToJson(this as _SecurityScheme);
+    if (extensions != null) {
+      json.addAll(extensions!);
+    }
+    return json;
+  }
+}
+
+/// Represents the configuration details for a supported OAuth Flow.
+@freezed
+abstract class OAuthFlow with _$OAuthFlow {
+  /// Creates an [OAuthFlow] object.
+  @JsonSerializable(includeIfNull: false, explicitToJson: true)
+  const factory OAuthFlow({
+    /// The available scopes for the OAuth2 security scheme.
+    required Map<String, String> scopes,
 
     /// The authorization URL to be used for this flow.
     String? authorizationUrl,
 
-    /// The available scopes for the OAuth2 flow.
-    Map<String, String>? scopes,
-  }) = _SecurityScheme;
+    /// The token URL to be used for this flow.
+    String? tokenUrl,
 
-  /// Creates a [SecurityScheme] from a JSON object.
-  factory SecurityScheme.fromJson(Map<String, dynamic> json) =>
-      _$SecuritySchemeFromJson(json);
+    /// The URL to be used for obtaining refresh tokens.
+    String? refreshUrl,
+  }) = _OAuthFlow;
+
+  /// Creates an [OAuthFlow] from a JSON object.
+  factory OAuthFlow.fromJson(Map<String, dynamic> json) =>
+      _$OAuthFlowFromJson(json);
+}
+
+/// Allows configuration of the supported OAuth Flows.
+@freezed
+abstract class OAuthFlows with _$OAuthFlows {
+  /// Creates an [OAuthFlows] object.
+  @JsonSerializable(includeIfNull: false, explicitToJson: true)
+  const factory OAuthFlows({
+    /// Configuration for the OAuth Implicit flow.
+    OAuthFlow? implicit,
+
+    /// Configuration for the OAuth Resource Owner Password flow.
+    OAuthFlow? password,
+
+    /// Configuration for the OAuth Client Credentials flow.
+    OAuthFlow? clientCredentials,
+
+    /// Configuration for the OAuth Authorization Code flow.
+    OAuthFlow? authorizationCode,
+  }) = _OAuthFlows;
+
+  /// Creates an [OAuthFlows] from a JSON object.
+  factory OAuthFlows.fromJson(Map<String, dynamic> json) =>
+      _$OAuthFlowsFromJson(json);
 }

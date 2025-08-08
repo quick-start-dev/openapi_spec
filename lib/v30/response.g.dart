@@ -17,7 +17,6 @@ _Response _$ResponseFromJson(Map<String, dynamic> json) => _Response(
   links: (json['links'] as Map<String, dynamic>?)?.map(
     (k, e) => MapEntry(k, Link.fromJson(e as Map<String, dynamic>)),
   ),
-  extensions: json['extensions'] as Map<String, dynamic>?,
 );
 
 Map<String, dynamic> _$ResponseToJson(_Response instance) => <String, dynamic>{
@@ -30,5 +29,4 @@ Map<String, dynamic> _$ResponseToJson(_Response instance) => <String, dynamic>{
     'headers': value,
   if (instance.links?.map((k, e) => MapEntry(k, e.toJson())) case final value?)
     'links': value,
-  if (instance.extensions case final value?) 'extensions': value,
 };
