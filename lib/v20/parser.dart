@@ -7,18 +7,18 @@ import 'package:openapi_spec/v20/openapi_spec.dart';
 class OpenAPiParser {
   /// Parses a JSON OpenAPI spec from a string.
   /// Throws [FormatException] if the content is not valid JSON.
-  static OpenApiSpec parseJson(String content) {
-    return OpenApiSpec.fromJson(json.decode(content) as Map<String, dynamic>);
+  static OpenAPI parseJson(String content) {
+    return OpenAPI.fromJson(json.decode(content) as Map<String, dynamic>);
   }
 
   /// Parses a YAML OpenAPI spec from a string.
   /// Throws a parsing error if the content is not valid YAML.
-  static OpenApiSpec parseYaml(String content) {
-    return OpenApiSpec.fromJson(yamlToMap(content));
+  static OpenAPI parseYaml(String content) {
+    return OpenAPI.fromJson(yamlToMap(content));
   }
 
-  /// Serializes a [OpenApiSpec] object to a formatted JSON string.
-  static String toJsonString(OpenApiSpec spec) {
+  /// Serializes a [OpenAPI] object to a formatted JSON string.
+  static String toJsonString(OpenAPI spec) {
     return json.encode(spec.toJson());
   }
 }

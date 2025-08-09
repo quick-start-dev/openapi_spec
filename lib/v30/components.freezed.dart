@@ -24,7 +24,7 @@ mixin _$Components {
  Map<String, Header>? get headers;/// An object to hold reusable Link Objects.
  Map<String, Link>? get links;/// The callbacks available for reuse.
  Map<String, Callback>? get callbacks;/// The OpenAPI extensions available for reuse.
- Map<String, dynamic>? get extensions;/// An object to hold reusable Example Objects.
+@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? get extensions;/// An object to hold reusable Example Objects.
  Map<String, Example>? get examples;
 /// Create a copy of Components
 /// with the given fields replaced by the non-null parameter values.
@@ -32,8 +32,6 @@ mixin _$Components {
 @pragma('vm:prefer-inline')
 $ComponentsCopyWith<Components> get copyWith => _$ComponentsCopyWithImpl<Components>(this as Components, _$identity);
 
-  /// Serializes this Components to a JSON map.
-  Map<String, dynamic> toJson();
 
 
 @override
@@ -58,7 +56,7 @@ abstract mixin class $ComponentsCopyWith<$Res>  {
   factory $ComponentsCopyWith(Components value, $Res Function(Components) _then) = _$ComponentsCopyWithImpl;
 @useResult
 $Res call({
- Map<String, Schema>? schemas, Map<String, Response>? responses, Map<String, Parameter>? parameters, Map<String, RequestBody>? requestBodies, Map<String, SecurityScheme>? securitySchemes, Map<String, Header>? headers, Map<String, Link>? links, Map<String, Callback>? callbacks, Map<String, dynamic>? extensions, Map<String, Example>? examples
+ Map<String, Schema>? schemas, Map<String, Response>? responses, Map<String, Parameter>? parameters, Map<String, RequestBody>? requestBodies, Map<String, SecurityScheme>? securitySchemes, Map<String, Header>? headers, Map<String, Link>? links, Map<String, Callback>? callbacks,@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? extensions, Map<String, Example>? examples
 });
 
 
@@ -172,7 +170,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Map<String, Schema>? schemas,  Map<String, Response>? responses,  Map<String, Parameter>? parameters,  Map<String, RequestBody>? requestBodies,  Map<String, SecurityScheme>? securitySchemes,  Map<String, Header>? headers,  Map<String, Link>? links,  Map<String, Callback>? callbacks,  Map<String, dynamic>? extensions,  Map<String, Example>? examples)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Map<String, Schema>? schemas,  Map<String, Response>? responses,  Map<String, Parameter>? parameters,  Map<String, RequestBody>? requestBodies,  Map<String, SecurityScheme>? securitySchemes,  Map<String, Header>? headers,  Map<String, Link>? links,  Map<String, Callback>? callbacks, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions,  Map<String, Example>? examples)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Components() when $default != null:
 return $default(_that.schemas,_that.responses,_that.parameters,_that.requestBodies,_that.securitySchemes,_that.headers,_that.links,_that.callbacks,_that.extensions,_that.examples);case _:
@@ -193,7 +191,7 @@ return $default(_that.schemas,_that.responses,_that.parameters,_that.requestBodi
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Map<String, Schema>? schemas,  Map<String, Response>? responses,  Map<String, Parameter>? parameters,  Map<String, RequestBody>? requestBodies,  Map<String, SecurityScheme>? securitySchemes,  Map<String, Header>? headers,  Map<String, Link>? links,  Map<String, Callback>? callbacks,  Map<String, dynamic>? extensions,  Map<String, Example>? examples)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Map<String, Schema>? schemas,  Map<String, Response>? responses,  Map<String, Parameter>? parameters,  Map<String, RequestBody>? requestBodies,  Map<String, SecurityScheme>? securitySchemes,  Map<String, Header>? headers,  Map<String, Link>? links,  Map<String, Callback>? callbacks, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions,  Map<String, Example>? examples)  $default,) {final _that = this;
 switch (_that) {
 case _Components():
 return $default(_that.schemas,_that.responses,_that.parameters,_that.requestBodies,_that.securitySchemes,_that.headers,_that.links,_that.callbacks,_that.extensions,_that.examples);case _:
@@ -213,7 +211,7 @@ return $default(_that.schemas,_that.responses,_that.parameters,_that.requestBodi
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Map<String, Schema>? schemas,  Map<String, Response>? responses,  Map<String, Parameter>? parameters,  Map<String, RequestBody>? requestBodies,  Map<String, SecurityScheme>? securitySchemes,  Map<String, Header>? headers,  Map<String, Link>? links,  Map<String, Callback>? callbacks,  Map<String, dynamic>? extensions,  Map<String, Example>? examples)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Map<String, Schema>? schemas,  Map<String, Response>? responses,  Map<String, Parameter>? parameters,  Map<String, RequestBody>? requestBodies,  Map<String, SecurityScheme>? securitySchemes,  Map<String, Header>? headers,  Map<String, Link>? links,  Map<String, Callback>? callbacks, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions,  Map<String, Example>? examples)?  $default,) {final _that = this;
 switch (_that) {
 case _Components() when $default != null:
 return $default(_that.schemas,_that.responses,_that.parameters,_that.requestBodies,_that.securitySchemes,_that.headers,_that.links,_that.callbacks,_that.extensions,_that.examples);case _:
@@ -227,8 +225,8 @@ return $default(_that.schemas,_that.responses,_that.parameters,_that.requestBodi
 /// @nodoc
 
 @JsonSerializable(includeIfNull: false, explicitToJson: true)
-class _Components implements Components {
-  const _Components({final  Map<String, Schema>? schemas, final  Map<String, Response>? responses, final  Map<String, Parameter>? parameters, final  Map<String, RequestBody>? requestBodies, final  Map<String, SecurityScheme>? securitySchemes, final  Map<String, Header>? headers, final  Map<String, Link>? links, final  Map<String, Callback>? callbacks, final  Map<String, dynamic>? extensions, final  Map<String, Example>? examples}): _schemas = schemas,_responses = responses,_parameters = parameters,_requestBodies = requestBodies,_securitySchemes = securitySchemes,_headers = headers,_links = links,_callbacks = callbacks,_extensions = extensions,_examples = examples;
+class _Components extends Components {
+  const _Components({final  Map<String, Schema>? schemas, final  Map<String, Response>? responses, final  Map<String, Parameter>? parameters, final  Map<String, RequestBody>? requestBodies, final  Map<String, SecurityScheme>? securitySchemes, final  Map<String, Header>? headers, final  Map<String, Link>? links, final  Map<String, Callback>? callbacks, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) final  Map<String, dynamic>? extensions, final  Map<String, Example>? examples}): _schemas = schemas,_responses = responses,_parameters = parameters,_requestBodies = requestBodies,_securitySchemes = securitySchemes,_headers = headers,_links = links,_callbacks = callbacks,_extensions = extensions,_examples = examples,super._();
   factory _Components.fromJson(Map<String, dynamic> json) => _$ComponentsFromJson(json);
 
 /// The schemas available for reuse.
@@ -322,7 +320,7 @@ class _Components implements Components {
 /// The OpenAPI extensions available for reuse.
  final  Map<String, dynamic>? _extensions;
 /// The OpenAPI extensions available for reuse.
-@override Map<String, dynamic>? get extensions {
+@override@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? get extensions {
   final value = _extensions;
   if (value == null) return null;
   if (_extensions is EqualUnmodifiableMapView) return _extensions;
@@ -348,10 +346,7 @@ class _Components implements Components {
 @pragma('vm:prefer-inline')
 _$ComponentsCopyWith<_Components> get copyWith => __$ComponentsCopyWithImpl<_Components>(this, _$identity);
 
-@override
-Map<String, dynamic> toJson() {
-  return _$ComponentsToJson(this, );
-}
+
 
 @override
 bool operator ==(Object other) {
@@ -375,7 +370,7 @@ abstract mixin class _$ComponentsCopyWith<$Res> implements $ComponentsCopyWith<$
   factory _$ComponentsCopyWith(_Components value, $Res Function(_Components) _then) = __$ComponentsCopyWithImpl;
 @override @useResult
 $Res call({
- Map<String, Schema>? schemas, Map<String, Response>? responses, Map<String, Parameter>? parameters, Map<String, RequestBody>? requestBodies, Map<String, SecurityScheme>? securitySchemes, Map<String, Header>? headers, Map<String, Link>? links, Map<String, Callback>? callbacks, Map<String, dynamic>? extensions, Map<String, Example>? examples
+ Map<String, Schema>? schemas, Map<String, Response>? responses, Map<String, Parameter>? parameters, Map<String, RequestBody>? requestBodies, Map<String, SecurityScheme>? securitySchemes, Map<String, Header>? headers, Map<String, Link>? links, Map<String, Callback>? callbacks,@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? extensions, Map<String, Example>? examples
 });
 
 

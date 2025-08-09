@@ -8,6 +8,7 @@ void main() {
   group('OpenAPI v3.0 Test', () {
     test('toJson includes extensions', () {
       const spec = OpenAPI(
+        openapi: '3.0.4',
         info: Info(title: 'Test API', version: '1.0.0'),
         extensions: {'x-meta': 'custom metadata', 'x-version': 'v2'},
       );

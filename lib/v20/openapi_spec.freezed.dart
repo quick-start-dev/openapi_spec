@@ -13,7 +13,7 @@ part of 'openapi_spec.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$OpenApiSpec {
+mixin _$OpenAPI {
 
 /// The version of the Swagger specification.
  String get swagger;/// Metadata about the API.
@@ -30,17 +30,17 @@ mixin _$OpenApiSpec {
  ExternalDocs? get externalDocs;/// A list of tags for API documentation.
  List<Tag> get tags;/// A map of OpenAPI extensions.
  Map<String, dynamic>? get extensions;
-/// Create a copy of OpenApiSpec
+/// Create a copy of OpenAPI
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$OpenApiSpecCopyWith<OpenApiSpec> get copyWith => _$OpenApiSpecCopyWithImpl<OpenApiSpec>(this as OpenApiSpec, _$identity);
+$OpenAPICopyWith<OpenAPI> get copyWith => _$OpenAPICopyWithImpl<OpenAPI>(this as OpenAPI, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OpenApiSpec&&(identical(other.swagger, swagger) || other.swagger == swagger)&&(identical(other.info, info) || other.info == info)&&(identical(other.host, host) || other.host == host)&&(identical(other.basePath, basePath) || other.basePath == basePath)&&const DeepCollectionEquality().equals(other.schemes, schemes)&&const DeepCollectionEquality().equals(other.consumes, consumes)&&const DeepCollectionEquality().equals(other.produces, produces)&&const DeepCollectionEquality().equals(other.paths, paths)&&const DeepCollectionEquality().equals(other.definitions, definitions)&&const DeepCollectionEquality().equals(other.securityDefinitions, securityDefinitions)&&const DeepCollectionEquality().equals(other.security, security)&&(identical(other.externalDocs, externalDocs) || other.externalDocs == externalDocs)&&const DeepCollectionEquality().equals(other.tags, tags)&&const DeepCollectionEquality().equals(other.extensions, extensions));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OpenAPI&&(identical(other.swagger, swagger) || other.swagger == swagger)&&(identical(other.info, info) || other.info == info)&&(identical(other.host, host) || other.host == host)&&(identical(other.basePath, basePath) || other.basePath == basePath)&&const DeepCollectionEquality().equals(other.schemes, schemes)&&const DeepCollectionEquality().equals(other.consumes, consumes)&&const DeepCollectionEquality().equals(other.produces, produces)&&const DeepCollectionEquality().equals(other.paths, paths)&&const DeepCollectionEquality().equals(other.definitions, definitions)&&const DeepCollectionEquality().equals(other.securityDefinitions, securityDefinitions)&&const DeepCollectionEquality().equals(other.security, security)&&(identical(other.externalDocs, externalDocs) || other.externalDocs == externalDocs)&&const DeepCollectionEquality().equals(other.tags, tags)&&const DeepCollectionEquality().equals(other.extensions, extensions));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -49,15 +49,15 @@ int get hashCode => Object.hash(runtimeType,swagger,info,host,basePath,const Dee
 
 @override
 String toString() {
-  return 'OpenApiSpec(swagger: $swagger, info: $info, host: $host, basePath: $basePath, schemes: $schemes, consumes: $consumes, produces: $produces, paths: $paths, definitions: $definitions, securityDefinitions: $securityDefinitions, security: $security, externalDocs: $externalDocs, tags: $tags, extensions: $extensions)';
+  return 'OpenAPI(swagger: $swagger, info: $info, host: $host, basePath: $basePath, schemes: $schemes, consumes: $consumes, produces: $produces, paths: $paths, definitions: $definitions, securityDefinitions: $securityDefinitions, security: $security, externalDocs: $externalDocs, tags: $tags, extensions: $extensions)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $OpenApiSpecCopyWith<$Res>  {
-  factory $OpenApiSpecCopyWith(OpenApiSpec value, $Res Function(OpenApiSpec) _then) = _$OpenApiSpecCopyWithImpl;
+abstract mixin class $OpenAPICopyWith<$Res>  {
+  factory $OpenAPICopyWith(OpenAPI value, $Res Function(OpenAPI) _then) = _$OpenAPICopyWithImpl;
 @useResult
 $Res call({
  String swagger, Info? info, String? host, String? basePath, List<String>? schemes, List<String>? consumes, List<String>? produces, Map<String, PathItem> paths, Map<String, Schema> definitions, Map<String, SecurityScheme> securityDefinitions, List<SecurityRequirement> security, ExternalDocs? externalDocs, List<Tag> tags, Map<String, dynamic>? extensions
@@ -68,14 +68,14 @@ $InfoCopyWith<$Res>? get info;$ExternalDocsCopyWith<$Res>? get externalDocs;
 
 }
 /// @nodoc
-class _$OpenApiSpecCopyWithImpl<$Res>
-    implements $OpenApiSpecCopyWith<$Res> {
-  _$OpenApiSpecCopyWithImpl(this._self, this._then);
+class _$OpenAPICopyWithImpl<$Res>
+    implements $OpenAPICopyWith<$Res> {
+  _$OpenAPICopyWithImpl(this._self, this._then);
 
-  final OpenApiSpec _self;
-  final $Res Function(OpenApiSpec) _then;
+  final OpenAPI _self;
+  final $Res Function(OpenAPI) _then;
 
-/// Create a copy of OpenApiSpec
+/// Create a copy of OpenAPI
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? swagger = null,Object? info = freezed,Object? host = freezed,Object? basePath = freezed,Object? schemes = freezed,Object? consumes = freezed,Object? produces = freezed,Object? paths = null,Object? definitions = null,Object? securityDefinitions = null,Object? security = null,Object? externalDocs = freezed,Object? tags = null,Object? extensions = freezed,}) {
   return _then(_self.copyWith(
@@ -96,7 +96,7 @@ as List<Tag>,extensions: freezed == extensions ? _self.extensions : extensions /
 as Map<String, dynamic>?,
   ));
 }
-/// Create a copy of OpenApiSpec
+/// Create a copy of OpenAPI
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -108,7 +108,7 @@ $InfoCopyWith<$Res>? get info {
   return $InfoCopyWith<$Res>(_self.info!, (value) {
     return _then(_self.copyWith(info: value));
   });
-}/// Create a copy of OpenApiSpec
+}/// Create a copy of OpenAPI
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -124,8 +124,8 @@ $ExternalDocsCopyWith<$Res>? get externalDocs {
 }
 
 
-/// Adds pattern-matching-related methods to [OpenApiSpec].
-extension OpenApiSpecPatterns on OpenApiSpec {
+/// Adds pattern-matching-related methods to [OpenAPI].
+extension OpenAPIPatterns on OpenAPI {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -138,10 +138,10 @@ extension OpenApiSpecPatterns on OpenApiSpec {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _OpenApiSpec value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _OpenAPI value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _OpenApiSpec() when $default != null:
+case _OpenAPI() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -160,10 +160,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _OpenApiSpec value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _OpenAPI value)  $default,){
 final _that = this;
 switch (_that) {
-case _OpenApiSpec():
+case _OpenAPI():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -181,10 +181,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _OpenApiSpec value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _OpenAPI value)?  $default,){
 final _that = this;
 switch (_that) {
-case _OpenApiSpec() when $default != null:
+case _OpenAPI() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -204,7 +204,7 @@ return $default(_that);case _:
 
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String swagger,  Info? info,  String? host,  String? basePath,  List<String>? schemes,  List<String>? consumes,  List<String>? produces,  Map<String, PathItem> paths,  Map<String, Schema> definitions,  Map<String, SecurityScheme> securityDefinitions,  List<SecurityRequirement> security,  ExternalDocs? externalDocs,  List<Tag> tags,  Map<String, dynamic>? extensions)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _OpenApiSpec() when $default != null:
+case _OpenAPI() when $default != null:
 return $default(_that.swagger,_that.info,_that.host,_that.basePath,_that.schemes,_that.consumes,_that.produces,_that.paths,_that.definitions,_that.securityDefinitions,_that.security,_that.externalDocs,_that.tags,_that.extensions);case _:
   return orElse();
 
@@ -225,7 +225,7 @@ return $default(_that.swagger,_that.info,_that.host,_that.basePath,_that.schemes
 
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String swagger,  Info? info,  String? host,  String? basePath,  List<String>? schemes,  List<String>? consumes,  List<String>? produces,  Map<String, PathItem> paths,  Map<String, Schema> definitions,  Map<String, SecurityScheme> securityDefinitions,  List<SecurityRequirement> security,  ExternalDocs? externalDocs,  List<Tag> tags,  Map<String, dynamic>? extensions)  $default,) {final _that = this;
 switch (_that) {
-case _OpenApiSpec():
+case _OpenAPI():
 return $default(_that.swagger,_that.info,_that.host,_that.basePath,_that.schemes,_that.consumes,_that.produces,_that.paths,_that.definitions,_that.securityDefinitions,_that.security,_that.externalDocs,_that.tags,_that.extensions);case _:
   throw StateError('Unexpected subclass');
 
@@ -245,7 +245,7 @@ return $default(_that.swagger,_that.info,_that.host,_that.basePath,_that.schemes
 
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String swagger,  Info? info,  String? host,  String? basePath,  List<String>? schemes,  List<String>? consumes,  List<String>? produces,  Map<String, PathItem> paths,  Map<String, Schema> definitions,  Map<String, SecurityScheme> securityDefinitions,  List<SecurityRequirement> security,  ExternalDocs? externalDocs,  List<Tag> tags,  Map<String, dynamic>? extensions)?  $default,) {final _that = this;
 switch (_that) {
-case _OpenApiSpec() when $default != null:
+case _OpenAPI() when $default != null:
 return $default(_that.swagger,_that.info,_that.host,_that.basePath,_that.schemes,_that.consumes,_that.produces,_that.paths,_that.definitions,_that.securityDefinitions,_that.security,_that.externalDocs,_that.tags,_that.extensions);case _:
   return null;
 
@@ -257,9 +257,9 @@ return $default(_that.swagger,_that.info,_that.host,_that.basePath,_that.schemes
 /// @nodoc
 
 @JsonSerializable(includeIfNull: false, explicitToJson: true)
-class _OpenApiSpec extends OpenApiSpec {
-  const _OpenApiSpec({this.swagger = '2.0', this.info, this.host, this.basePath, final  List<String>? schemes, final  List<String>? consumes, final  List<String>? produces, final  Map<String, PathItem> paths = const {}, final  Map<String, Schema> definitions = const {}, final  Map<String, SecurityScheme> securityDefinitions = const {}, final  List<SecurityRequirement> security = const [], this.externalDocs, final  List<Tag> tags = const [], final  Map<String, dynamic>? extensions}): _schemes = schemes,_consumes = consumes,_produces = produces,_paths = paths,_definitions = definitions,_securityDefinitions = securityDefinitions,_security = security,_tags = tags,_extensions = extensions,super._();
-  factory _OpenApiSpec.fromJson(Map<String, dynamic> json) => _$OpenApiSpecFromJson(json);
+class _OpenAPI extends OpenAPI {
+  const _OpenAPI({this.swagger = '2.0', this.info, this.host, this.basePath, final  List<String>? schemes, final  List<String>? consumes, final  List<String>? produces, final  Map<String, PathItem> paths = const {}, final  Map<String, Schema> definitions = const {}, final  Map<String, SecurityScheme> securityDefinitions = const {}, final  List<SecurityRequirement> security = const [], this.externalDocs, final  List<Tag> tags = const [], final  Map<String, dynamic>? extensions}): _schemes = schemes,_consumes = consumes,_produces = produces,_paths = paths,_definitions = definitions,_securityDefinitions = securityDefinitions,_security = security,_tags = tags,_extensions = extensions,super._();
+  factory _OpenAPI.fromJson(Map<String, dynamic> json) => _$OpenAPIFromJson(json);
 
 /// The version of the Swagger specification.
 @override@JsonKey() final  String swagger;
@@ -361,17 +361,17 @@ class _OpenApiSpec extends OpenApiSpec {
 }
 
 
-/// Create a copy of OpenApiSpec
+/// Create a copy of OpenAPI
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$OpenApiSpecCopyWith<_OpenApiSpec> get copyWith => __$OpenApiSpecCopyWithImpl<_OpenApiSpec>(this, _$identity);
+_$OpenAPICopyWith<_OpenAPI> get copyWith => __$OpenAPICopyWithImpl<_OpenAPI>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OpenApiSpec&&(identical(other.swagger, swagger) || other.swagger == swagger)&&(identical(other.info, info) || other.info == info)&&(identical(other.host, host) || other.host == host)&&(identical(other.basePath, basePath) || other.basePath == basePath)&&const DeepCollectionEquality().equals(other._schemes, _schemes)&&const DeepCollectionEquality().equals(other._consumes, _consumes)&&const DeepCollectionEquality().equals(other._produces, _produces)&&const DeepCollectionEquality().equals(other._paths, _paths)&&const DeepCollectionEquality().equals(other._definitions, _definitions)&&const DeepCollectionEquality().equals(other._securityDefinitions, _securityDefinitions)&&const DeepCollectionEquality().equals(other._security, _security)&&(identical(other.externalDocs, externalDocs) || other.externalDocs == externalDocs)&&const DeepCollectionEquality().equals(other._tags, _tags)&&const DeepCollectionEquality().equals(other._extensions, _extensions));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OpenAPI&&(identical(other.swagger, swagger) || other.swagger == swagger)&&(identical(other.info, info) || other.info == info)&&(identical(other.host, host) || other.host == host)&&(identical(other.basePath, basePath) || other.basePath == basePath)&&const DeepCollectionEquality().equals(other._schemes, _schemes)&&const DeepCollectionEquality().equals(other._consumes, _consumes)&&const DeepCollectionEquality().equals(other._produces, _produces)&&const DeepCollectionEquality().equals(other._paths, _paths)&&const DeepCollectionEquality().equals(other._definitions, _definitions)&&const DeepCollectionEquality().equals(other._securityDefinitions, _securityDefinitions)&&const DeepCollectionEquality().equals(other._security, _security)&&(identical(other.externalDocs, externalDocs) || other.externalDocs == externalDocs)&&const DeepCollectionEquality().equals(other._tags, _tags)&&const DeepCollectionEquality().equals(other._extensions, _extensions));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -380,15 +380,15 @@ int get hashCode => Object.hash(runtimeType,swagger,info,host,basePath,const Dee
 
 @override
 String toString() {
-  return 'OpenApiSpec(swagger: $swagger, info: $info, host: $host, basePath: $basePath, schemes: $schemes, consumes: $consumes, produces: $produces, paths: $paths, definitions: $definitions, securityDefinitions: $securityDefinitions, security: $security, externalDocs: $externalDocs, tags: $tags, extensions: $extensions)';
+  return 'OpenAPI(swagger: $swagger, info: $info, host: $host, basePath: $basePath, schemes: $schemes, consumes: $consumes, produces: $produces, paths: $paths, definitions: $definitions, securityDefinitions: $securityDefinitions, security: $security, externalDocs: $externalDocs, tags: $tags, extensions: $extensions)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$OpenApiSpecCopyWith<$Res> implements $OpenApiSpecCopyWith<$Res> {
-  factory _$OpenApiSpecCopyWith(_OpenApiSpec value, $Res Function(_OpenApiSpec) _then) = __$OpenApiSpecCopyWithImpl;
+abstract mixin class _$OpenAPICopyWith<$Res> implements $OpenAPICopyWith<$Res> {
+  factory _$OpenAPICopyWith(_OpenAPI value, $Res Function(_OpenAPI) _then) = __$OpenAPICopyWithImpl;
 @override @useResult
 $Res call({
  String swagger, Info? info, String? host, String? basePath, List<String>? schemes, List<String>? consumes, List<String>? produces, Map<String, PathItem> paths, Map<String, Schema> definitions, Map<String, SecurityScheme> securityDefinitions, List<SecurityRequirement> security, ExternalDocs? externalDocs, List<Tag> tags, Map<String, dynamic>? extensions
@@ -399,17 +399,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$OpenApiSpecCopyWithImpl<$Res>
-    implements _$OpenApiSpecCopyWith<$Res> {
-  __$OpenApiSpecCopyWithImpl(this._self, this._then);
+class __$OpenAPICopyWithImpl<$Res>
+    implements _$OpenAPICopyWith<$Res> {
+  __$OpenAPICopyWithImpl(this._self, this._then);
 
-  final _OpenApiSpec _self;
-  final $Res Function(_OpenApiSpec) _then;
+  final _OpenAPI _self;
+  final $Res Function(_OpenAPI) _then;
 
-/// Create a copy of OpenApiSpec
+/// Create a copy of OpenAPI
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? swagger = null,Object? info = freezed,Object? host = freezed,Object? basePath = freezed,Object? schemes = freezed,Object? consumes = freezed,Object? produces = freezed,Object? paths = null,Object? definitions = null,Object? securityDefinitions = null,Object? security = null,Object? externalDocs = freezed,Object? tags = null,Object? extensions = freezed,}) {
-  return _then(_OpenApiSpec(
+  return _then(_OpenAPI(
 swagger: null == swagger ? _self.swagger : swagger // ignore: cast_nullable_to_non_nullable
 as String,info: freezed == info ? _self.info : info // ignore: cast_nullable_to_non_nullable
 as Info?,host: freezed == host ? _self.host : host // ignore: cast_nullable_to_non_nullable
@@ -428,7 +428,7 @@ as Map<String, dynamic>?,
   ));
 }
 
-/// Create a copy of OpenApiSpec
+/// Create a copy of OpenAPI
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -440,7 +440,7 @@ $InfoCopyWith<$Res>? get info {
   return $InfoCopyWith<$Res>(_self.info!, (value) {
     return _then(_self.copyWith(info: value));
   });
-}/// Create a copy of OpenApiSpec
+}/// Create a copy of OpenAPI
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')

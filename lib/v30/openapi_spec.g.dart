@@ -7,7 +7,7 @@ part of 'openapi_spec.dart';
 // **************************************************************************
 
 _OpenAPI _$OpenAPIFromJson(Map<String, dynamic> json) => _OpenAPI(
-  openapi: json['openapi'] as String? ?? '3.0.0',
+  openapi: json['openapi'] as String,
   info:
       json['info'] == null
           ? null

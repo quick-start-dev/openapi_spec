@@ -262,12 +262,12 @@ return $default(_that.openapi,_that.info,_that.servers,_that.paths,_that.compone
 
 @JsonSerializable(includeIfNull: false, explicitToJson: true)
 class _OpenAPI extends OpenAPI {
-  const _OpenAPI({this.openapi = '3.0.0', this.info, final  List<Server> servers = const [], final  Map<String, PathItem> paths = const {}, this.components, final  List<SecurityRequirement> security = const [], final  List<Tag> tags = const [], this.externalDocs, final  Map<String, dynamic>? extensions}): _servers = servers,_paths = paths,_security = security,_tags = tags,_extensions = extensions,super._();
+  const _OpenAPI({required this.openapi, this.info, final  List<Server> servers = const [], final  Map<String, PathItem> paths = const {}, this.components, final  List<SecurityRequirement> security = const [], final  List<Tag> tags = const [], this.externalDocs, final  Map<String, dynamic>? extensions}): _servers = servers,_paths = paths,_security = security,_tags = tags,_extensions = extensions,super._();
   factory _OpenAPI.fromJson(Map<String, dynamic> json) => _$OpenAPIFromJson(json);
 
 /// The version of the OpenAPI specification.
 /// A semver string which MUST begin with 3.0.
-@override@JsonKey() final  String openapi;
+@override final  String openapi;
 /// Metadata about the API.
 @override final  Info? info;
 /// An array of Server Objects, which provide connectivity information

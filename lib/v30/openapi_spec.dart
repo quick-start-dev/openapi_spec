@@ -21,7 +21,7 @@ abstract class OpenAPI with _$OpenAPI {
   const factory OpenAPI({
     /// The version of the OpenAPI specification.
     /// A semver string which MUST begin with 3.0.
-    @Default('3.0.0') String openapi,
+    required String openapi,
 
     /// Metadata about the API.
     Info? info,

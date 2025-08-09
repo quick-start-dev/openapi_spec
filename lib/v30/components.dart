@@ -16,7 +16,7 @@ part 'components.g.dart';
 ///
 /// This class represents the `components` section of an OpenAPI document, where
 /// reusable schemas, responses, parameters, and other objects are defined.
-@Freezed(copyWith: true, fromJson: true, toJson: true, equal: true)
+@Freezed(copyWith: true, fromJson: true, toJson: false, equal: true)
 abstract class Components with _$Components {
   /// Creates a [Components] object.
   @JsonSerializable(includeIfNull: false, explicitToJson: true)
@@ -46,14 +46,33 @@ abstract class Components with _$Components {
     Map<String, Callback>? callbacks,
 
     /// The OpenAPI extensions available for reuse.
+    @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)
     Map<String, dynamic>? extensions,
 
     /// An object to hold reusable Example Objects.
     Map<String, Example>? examples,
   }) = _Components;
+  const Components._();
 
   /// Creates a [Components] from a JSON object.
   ///
-  factory Components.fromJson(Map<String, dynamic> json) =>
-      _$ComponentsFromJson(json);
+  factory Components.fromJson(Map<String, dynamic> json) {
+    final extensions = <String, dynamic>{};
+    json.forEach((key, value) {
+      if (key.startsWith('x-')) {
+        extensions[key] = value;
+      }
+    });
+
+    return _$ComponentsFromJson(json).copyWith(extensions: extensions);
+  }
+
+  /// Converts this [Components] object to a JSON map.
+  Map<String, dynamic> toJson() {
+    final json = _$ComponentsToJson(this as _Components);
+    if (extensions != null) {
+      json.addAll(extensions!);
+    }
+    return json;
+  }
 }

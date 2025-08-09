@@ -726,7 +726,7 @@ class SchemaV31 extends Schema {
       anyOf:
           (json['anyOf'] as List?)
               ?.map(
-                (e) => Schema.fromJson(
+                (e) => Schema.fromJson( 
                   e as Map<String, dynamic>,
                   version: version,
                 ),

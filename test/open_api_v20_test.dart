@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 void main() {
   group('OpenApiParser V20 Test', () {
     test('toJson includes extensions', () {
-      const spec = OpenApiSpec(
+      const spec = OpenAPI(
         info: Info(title: 'Test API', version: '1.0.0'),
         extensions: {'x-meta': 'custom metadata', 'x-version': 'v2'},
       );
@@ -23,7 +23,7 @@ void main() {
       final content = await file.readAsString();
       final orgJson = jsonDecode(content) as Map<String, dynamic>;
       final spec = OpenAPiParser.parseJson(content);
-      expect(spec, isA<OpenApiSpec>());
+      expect(spec, isA<OpenAPI>());
       expect(spec.swagger, '2.0');
       expect(spec.info, isNotNull);
 

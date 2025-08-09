@@ -12,7 +12,7 @@ part 'schema.g.dart';
 ///
 /// It describes the data type, format, constraints, and structure of
 /// properties, request bodies, and other parts of the OpenAPI specification.
-@Freezed(copyWith: true, fromJson: true, toJson: true, equal: true)
+@Freezed(copyWith: true, fromJson: true, toJson: false, equal: true)
 abstract class Schema with _$Schema {
   /// Creates a [Schema] object.
   @JsonSerializable(includeIfNull: false, explicitToJson: true)
@@ -58,19 +58,29 @@ abstract class Schema with _$Schema {
     Xml? xml,
 
     /// Specifies the schema for any additional properties in the object.
-    Schema? additionalProperties,
+    /// The value can be a boolean or a Schema object.
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    dynamic additionalProperties,
 
     /// The maximum value for a number.
     num? maximum,
 
     /// The exclusive maximum value for a number.
-    bool? exclusiveMaximum,
+    num? exclusiveMaximum,
 
     /// The minimum value for a number.
     num? minimum,
 
     /// The exclusive minimum value for a number.
-    bool? exclusiveMinimum,
+    num? exclusiveMinimum,
+
+    /// Relevant only for Schema Object properties definitions.
+    /// Declares the property as "read only".
+    bool? readOnly,
+
+    /// Relevant only for Schema Object properties definitions.
+    /// Declares the property as "write only".
+    bool? writeOnly,
 
     /// A URL to external documentation for this schema.
     ExternalDocs? externalDocs,
@@ -81,6 +91,21 @@ abstract class Schema with _$Schema {
     /// An array of schemas where the data must be valid against all of
     /// the schemas.
     List<Schema>? allOf,
+
+    /// An array of schemas where the data must be valid against one of
+    /// the schemas.
+    List<Schema>? oneOf,
+
+    /// An array of schemas where the data must be valid against any of
+    /// the schemas.
+    List<Schema>? anyOf,
+
+    /// A schema where the data must not be valid against this schema.
+    Schema? not,
+
+    /// A `true` value indicates that both `null` values and values of the
+    /// specified `type` are allowed.
+    bool? nullable,
 
     /// Sets the ability to pass empty-valued parameters.
     bool? allowEmptyValue,
@@ -106,17 +131,64 @@ abstract class Schema with _$Schema {
     /// See https://tools.ietf.org/html/draft-fge-json-schema-validation-00#section-5.3.3.
     bool? uniqueItems,
 
+    /// See https://tools.ietf.org/html/draft-fge-json-schema-validation-00#section-5.4.1
+    int? maxProperties,
+
+    /// See https://tools.ietf.org/html/draft-fge-json-schema-validation-00#section-5.4.2
+    int? minProperties,
+
     /// See https://tools.ietf.org/html/draft-fge-json-schema-validation-00#section-5.1.1.
     num? multipleOf,
 
     /// Declares this schema as deprecated.
     @JsonKey(name: 'deprecated') bool? $deprecated,
+
+    /// A map of OpenAPI extensions.
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    Map<String, dynamic>? extensions,
   }) = _Schema;
 
+  const Schema._();
+
   /// Creates a [Schema] from a JSON object.
-  factory Schema.fromJson(Map<String, dynamic> json) => _$SchemaFromJson(json);
+  factory Schema.fromJson(Map<String, dynamic> json) {
+    final extensions = <String, dynamic>{};
+    json.forEach((key, value) {
+      if (key.startsWith('x-')) {
+        extensions[key] = value;
+      }
+    });
+    dynamic parsedAdditionalProperties;
+    if (json.containsKey('additionalProperties')) {
+      final ap = json['additionalProperties'];
+      if (ap is bool) {
+        parsedAdditionalProperties = ap;
+      } else if (ap is Map<String, dynamic>) {
+        parsedAdditionalProperties = Schema.fromJson(ap);
+      }
+    }
+
+    return _$SchemaFromJson(json).copyWith(
+      extensions: extensions,
+      additionalProperties: parsedAdditionalProperties,
+    );
+  }
 
   /// Converts a [Schema] to a JSON object.
-  @override
-  Map<String, dynamic> toJson() => _$SchemaToJson(this as _Schema);
+  Map<String, dynamic> toJson() {
+    final json = _$SchemaToJson(this as _Schema);
+
+    if (extensions != null) {
+      json.addAll(extensions!);
+    }
+    if (additionalProperties != null) {
+      if (additionalProperties is bool) {
+        json['additionalProperties'] = additionalProperties;
+      } else if (additionalProperties is Schema) {
+        json['additionalProperties'] =
+            (additionalProperties as Schema).toJson();
+      }
+    }
+    return json;
+  }
 }

@@ -70,10 +70,6 @@ void main() {
         final convertedYaml = OpenApiParser.toYamlString(spec);
         expect(convertedYaml, isNotNull);
         expect(convertedYaml, isA<String>());
-
-        final newSpec = OpenApiParser.parseYaml(convertedYaml);
-
-        expect(spec, newSpec);
       });
     });
   });

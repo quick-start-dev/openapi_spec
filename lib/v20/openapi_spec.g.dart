@@ -6,7 +6,7 @@ part of 'openapi_spec.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_OpenApiSpec _$OpenApiSpecFromJson(Map<String, dynamic> json) => _OpenApiSpec(
+_OpenAPI _$OpenAPIFromJson(Map<String, dynamic> json) => _OpenAPI(
   swagger: json['swagger'] as String? ?? '2.0',
   info:
       json['info'] == null
@@ -53,9 +53,7 @@ _OpenApiSpec _$OpenApiSpecFromJson(Map<String, dynamic> json) => _OpenApiSpec(
   extensions: json['extensions'] as Map<String, dynamic>?,
 );
 
-Map<String, dynamic> _$OpenApiSpecToJson(
-  _OpenApiSpec instance,
-) => <String, dynamic>{
+Map<String, dynamic> _$OpenAPIToJson(_OpenAPI instance) => <String, dynamic>{
   'swagger': instance.swagger,
   if (instance.info?.toJson() case final value?) 'info': value,
   if (instance.host case final value?) 'host': value,

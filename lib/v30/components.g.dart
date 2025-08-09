@@ -31,7 +31,6 @@ _Components _$ComponentsFromJson(Map<String, dynamic> json) => _Components(
   callbacks: (json['callbacks'] as Map<String, dynamic>?)?.map(
     (k, e) => MapEntry(k, Callback.fromJson(e as Map<String, dynamic>)),
   ),
-  extensions: json['extensions'] as Map<String, dynamic>?,
   examples: (json['examples'] as Map<String, dynamic>?)?.map(
     (k, e) => MapEntry(k, Example.fromJson(e as Map<String, dynamic>)),
   ),
@@ -63,7 +62,6 @@ Map<String, dynamic> _$ComponentsToJson(
   if (instance.callbacks?.map((k, e) => MapEntry(k, e.toJson()))
       case final value?)
     'callbacks': value,
-  if (instance.extensions case final value?) 'extensions': value,
   if (instance.examples?.map((k, e) => MapEntry(k, e.toJson()))
       case final value?)
     'examples': value,

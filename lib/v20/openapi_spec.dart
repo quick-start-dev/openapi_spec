@@ -14,10 +14,10 @@ part 'openapi_spec.g.dart';
 /// This class represents the top-level structure of an OpenAPI 2.0 document,
 /// including metadata, definitions, paths, and security schemes.
 @Freezed(copyWith: true, fromJson: true, toJson: false, equal: true)
-abstract class OpenApiSpec with _$OpenApiSpec {
-  /// Creates an [OpenApiSpec] with the given parameters.
+abstract class OpenAPI with _$OpenAPI {
+  /// Creates an [OpenAPI] with the given parameters.
   @JsonSerializable(includeIfNull: false, explicitToJson: true)
-  const factory OpenApiSpec({
+  const factory OpenAPI({
     /// The version of the Swagger specification.
     @Default('2.0') String swagger,
 
@@ -59,13 +59,13 @@ abstract class OpenApiSpec with _$OpenApiSpec {
 
     /// A map of OpenAPI extensions.
     Map<String, dynamic>? extensions,
-  }) = _OpenApiSpec;
+  }) = _OpenAPI;
 
   /// https://github.com/rrousselGit/freezed/issues/697
-  const OpenApiSpec._();
+  const OpenAPI._();
 
-  /// Creates an [OpenApiSpec] from a JSON-like map.
-  factory OpenApiSpec.fromJson(Map<String, dynamic> json) {
+  /// Creates an [OpenAPI] from a JSON-like map.
+  factory OpenAPI.fromJson(Map<String, dynamic> json) {
     final extensions = <String, dynamic>{};
     json.forEach((key, value) {
       if (key.startsWith('x-')) {
@@ -73,12 +73,12 @@ abstract class OpenApiSpec with _$OpenApiSpec {
       }
     });
 
-    return _$OpenApiSpecFromJson(json).copyWith(extensions: extensions);
+    return _$OpenAPIFromJson(json).copyWith(extensions: extensions);
   }
 
-  /// Converts this [OpenApiSpec] to JSON.
+  /// Converts this [OpenAPI] to JSON.
   Map<String, dynamic> toJson() {
-    final json = _$OpenApiSpecToJson(this as _OpenApiSpec);
+    final json = _$OpenAPIToJson(this as _OpenAPI);
     if (extensions != null) {
       json.addAll(extensions!);
     }
