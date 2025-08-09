@@ -143,8 +143,8 @@ abstract class Schema with _$Schema {
     /// Declares this schema as deprecated.
     @JsonKey(name: 'deprecated') bool? $deprecated,
 
-    /// A map of OpenAPI extensions.
-    @JsonKey(includeFromJson: false, includeToJson: false)
+    /// Vendor extensions (keys like `x-*`).
+    @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)
     Map<String, dynamic>? extensions,
   }) = _Schema;
 

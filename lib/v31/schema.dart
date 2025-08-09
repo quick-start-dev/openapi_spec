@@ -145,8 +145,8 @@ abstract class Schema with _$Schema {
     /// Declares this schema as deprecated.
     @JsonKey(name: 'deprecated') bool? $deprecated,
 
-    /// A map of OpenAPI extensions.
-    @JsonKey(includeFromJson: false, includeToJson: false)
+    /// Vendor extensions (keys like `x-*`).
+    @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)
     Map<String, dynamic>? extensions,
 
     /// A unique identifier for the schema.
@@ -178,6 +178,9 @@ abstract class Schema with _$Schema {
 
     /// A vendor-specific swagger extension.
     @JsonKey(name: 'swagger-extension') bool? swaggerExtension,
+
+    /// A constant value for the schema.
+    @JsonKey(name: 'const') dynamic const$,
 
     /// A map of regular expressions to schemas for pattern-based properties.
     Map<String, Schema>? patternProperties,

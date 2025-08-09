@@ -49,7 +49,7 @@ abstract class Components with _$Components {
     /// The path items available for reuse.
     Map<String, PathItem>? pathItems,
 
-    /// The OpenAPI extensions available for reuse.
+    /// Vendor extensions (keys like `x-*`).
     @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)
     Map<String, dynamic>? extensions,
 

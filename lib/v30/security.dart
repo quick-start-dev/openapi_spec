@@ -103,8 +103,8 @@ abstract class SecurityScheme with _$SecurityScheme {
     /// Well-known URL to discover the OpenID Connect provider metadata.
     String? openIdConnectUrl,
 
-    /// A map of OpenAPI extensions.
-    @JsonKey(includeToJson: false, includeFromJson: false)
+    /// Vendor extensions (keys like `x-*`).
+    @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)
     Map<String, dynamic>? extensions,
   }) = _SecurityScheme;
   const SecurityScheme._();

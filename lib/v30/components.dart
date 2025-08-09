@@ -45,7 +45,7 @@ abstract class Components with _$Components {
     /// The callbacks available for reuse.
     Map<String, Callback>? callbacks,
 
-    /// The OpenAPI extensions available for reuse.
+    /// Vendor extensions (keys like `x-*`).
     @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)
     Map<String, dynamic>? extensions,
 

@@ -45,7 +45,8 @@ abstract class OpenAPI with _$OpenAPI {
     /// Additional external documentation for the API.
     ExternalDocs? externalDocs,
 
-    /// A map of OpenAPI extensions.
+    /// Vendor extensions (keys like `x-*`).
+    @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)
     Map<String, dynamic>? extensions,
   }) = _OpenAPI;
   const OpenAPI._();

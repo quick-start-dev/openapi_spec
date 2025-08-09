@@ -30,8 +30,8 @@ abstract class Response with _$Response {
     /// following the naming constraints of the names for Component Objects.
     Map<String, Link>? links,
 
-    /// A map of OpenAPI extensions.
-    @JsonKey(includeToJson: false, includeFromJson: false)
+    /// Vendor extensions (keys like `x-*`).
+    @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)
     Map<String, dynamic>? extensions,
   }) = _Response;
 

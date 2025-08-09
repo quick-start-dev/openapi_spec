@@ -54,6 +54,8 @@ abstract class PathItem with _$PathItem {
     /// The field name MUST begin with x-, for example, x-internal-id.
     /// The value can be null, a primitive, an array or an object.
     /// See Vendor Extensions for further details.
+    /// Vendor extensions (keys like `x-*`).
+    @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)
     Map<String, dynamic>? extensions,
   }) = _PathItem;
 

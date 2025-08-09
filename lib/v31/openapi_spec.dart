@@ -53,7 +53,8 @@ abstract class OpenAPI with _$OpenAPI {
     /// The incoming webhooks that MAY be received by the API.
     @Default({}) Map<String, PathItem> webhooks,
 
-    /// A map of OpenAPI extensions.
+    /// Vendor extensions (keys like `x-*`).
+    @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)
     Map<String, dynamic>? extensions,
   }) = _OpenAPI;
   const OpenAPI._();

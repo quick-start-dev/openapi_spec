@@ -71,7 +71,8 @@ abstract class PathItem with _$PathItem {
     /// that are defined at the OpenAPI Object's components/parameters.
     List<Parameter>? parameters,
 
-    /// A map of OpenAPI extensions.
+    /// Vendor extensions (keys like `x-*`).
+    @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)
     Map<String, dynamic>? extensions,
   }) = _PathItem;
   const PathItem._();

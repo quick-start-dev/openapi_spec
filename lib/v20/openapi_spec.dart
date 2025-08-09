@@ -57,7 +57,8 @@ abstract class OpenAPI with _$OpenAPI {
     /// A list of tags for API documentation.
     @Default([]) List<Tag> tags,
 
-    /// A map of OpenAPI extensions.
+    /// Vendor extensions (keys like `x-*`).
+    @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)
     Map<String, dynamic>? extensions,
   }) = _OpenAPI;
 
