@@ -86,8 +86,6 @@ mixin _$Schema {
 @pragma('vm:prefer-inline')
 $SchemaCopyWith<Schema> get copyWith => _$SchemaCopyWithImpl<Schema>(this as Schema, _$identity);
 
-  /// Serializes this Schema to a JSON map.
-  Map<String, dynamic> toJson();
 
 
 @override
@@ -605,10 +603,7 @@ class _Schema extends Schema {
 @pragma('vm:prefer-inline')
 _$SchemaCopyWith<_Schema> get copyWith => __$SchemaCopyWithImpl<_Schema>(this, _$identity);
 
-@override
-Map<String, dynamic> toJson() {
-  return _$SchemaToJson(this, );
-}
+
 
 @override
 bool operator ==(Object other) {

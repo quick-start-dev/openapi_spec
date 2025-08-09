@@ -12,7 +12,7 @@ part 'schema.g.dart';
 ///
 /// It describes the data type, format, constraints, and structure of
 /// properties, request bodies, and other parts of the OpenAPI specification.
-@Freezed(copyWith: true, fromJson: true, toJson: true, equal: true)
+@Freezed(copyWith: true, fromJson: true, toJson: false, equal: true)
 abstract class Schema with _$Schema {
   /// Creates a [Schema] object.
   @JsonSerializable(includeIfNull: false, explicitToJson: true)
@@ -225,9 +225,71 @@ abstract class Schema with _$Schema {
     );
   }
 
-  /// Converts a [Schema] to a JSON object.
+  /// Creates a [Schema] for a string.
+  factory Schema.string({
+    String? format,
+    String? title,
+    String? description,
+    List<dynamic>? examples,
+    bool? readOnly,
+    bool? writeOnly,
+  }) => Schema(
+    type: 'string',
+    format: format,
+    title: title,
+    description: description,
+    examples: examples,
+    readOnly: readOnly,
+    writeOnly: writeOnly,
+  );
 
-  @override
+  /// Creates a [Schema] for a string.
+  factory Schema.nullableString({
+    String? format,
+    String? title,
+    String? description,
+    List<dynamic>? examples,
+    bool? readOnly,
+    bool? writeOnly,
+  }) => Schema(
+    type: ['string', 'null'],
+    format: format,
+    title: title,
+    description: description,
+    examples: examples,
+    readOnly: readOnly,
+    writeOnly: writeOnly,
+  );
+
+  /// Creates a [Schema] for an integer.
+  factory Schema.integer({
+    String? format,
+    String? title,
+    String? description,
+    List<dynamic>? examples,
+    num? maximum,
+    num? minimum,
+    num? multipleOf,
+    num? exclusiveMaximum,
+    num? exclusiveMinimum,
+    bool? readOnly,
+    bool? writeOnly,
+  }) => Schema(
+    type: 'integer',
+    format: format,
+    title: title,
+    description: description,
+    examples: examples,
+    maximum: maximum,
+    minimum: minimum,
+    multipleOf: multipleOf,
+    exclusiveMaximum: exclusiveMaximum,
+    exclusiveMinimum: exclusiveMinimum,
+    readOnly: readOnly,
+    writeOnly: writeOnly,
+  );
+
+  /// Converts a [Schema] to a JSON object.
   Map<String, dynamic> toJson() {
     final json = _$SchemaToJson(this as _Schema);
 
