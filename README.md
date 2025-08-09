@@ -6,7 +6,7 @@
 [![build](https://github.com/quick-start.dev/openapi_spec_plus/actions/workflows/build.yml/badge.svg)](https://github.com/quick-start.dev/openapi_spec_plus/actions/workflows/build.yml)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-A Dart library for parsing and working with OpenAPI Specifications (v2.0, v3.0, and v3.1).
+description: A Dart library for parsing and working with OpenAPI Specifications (v2.0, v3.0, and v3.1).
 
 ## Features
 
