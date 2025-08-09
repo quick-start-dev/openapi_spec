@@ -132,14 +132,6 @@ void main() {
 ```
 
 ---
-
-## Package Structure
-
-* `lib/v20.dart` — OpenAPI 2.0 classes
-* `lib/v30.dart` — OpenAPI 3.0 classes
-* `lib/v31.dart` — OpenAPI 3.1 classes
-* `lib/openapi_spec_plus.dart` — Main parser with automatic version detection
-
 ---
 
 ## Contributing
