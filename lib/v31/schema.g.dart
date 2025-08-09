@@ -86,6 +86,10 @@ _Schema _$SchemaFromJson(Map<String, dynamic> json) => _Schema(
   contentMediaType: json['contentMediaType'] as String?,
   contentEncoding: json['contentEncoding'] as String?,
   swaggerExtension: json['swagger-extension'] as bool?,
+  patternProperties: (json['patternProperties'] as Map<String, dynamic>?)?.map(
+    (k, e) => MapEntry(k, Schema.fromJson(e as Map<String, dynamic>)),
+  ),
+  unevaluatedProperties: json['unevaluatedProperties'] as bool?,
 );
 
 Map<String, dynamic> _$SchemaToJson(_Schema instance) => <String, dynamic>{
@@ -146,4 +150,9 @@ Map<String, dynamic> _$SchemaToJson(_Schema instance) => <String, dynamic>{
   if (instance.contentMediaType case final value?) 'contentMediaType': value,
   if (instance.contentEncoding case final value?) 'contentEncoding': value,
   if (instance.swaggerExtension case final value?) 'swagger-extension': value,
+  if (instance.patternProperties?.map((k, e) => MapEntry(k, e.toJson()))
+      case final value?)
+    'patternProperties': value,
+  if (instance.unevaluatedProperties case final value?)
+    'unevaluatedProperties': value,
 };

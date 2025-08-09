@@ -178,6 +178,12 @@ abstract class Schema with _$Schema {
 
     /// A vendor-specific swagger extension.
     @JsonKey(name: 'swagger-extension') bool? swaggerExtension,
+
+    /// A map of regular expressions to schemas for pattern-based properties.
+    Map<String, Schema>? patternProperties,
+
+    /// https://stackoverflow.com/questions/79247662/exact-definition-of-unevaluatedproperties-in-jsonschema
+    bool? unevaluatedProperties,
   }) = _Schema;
 
   const Schema._();

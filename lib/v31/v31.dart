@@ -1,12 +1,17 @@
+export 'callback.dart';
+export 'components.dart';
 export 'contact.dart';
 export 'discriminator.dart';
+export 'example.dart';
 export 'external_docs.dart';
 export 'header.dart';
 export 'info.dart';
 export 'license.dart';
+export 'link.dart';
 export 'media_type.dart';
 export 'openapi_spec.dart';
 export 'operation.dart';
+export 'parameter.dart';
 export 'parser.dart';
 export 'path.dart';
 export 'request_body.dart';

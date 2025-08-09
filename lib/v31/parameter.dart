@@ -56,6 +56,9 @@ abstract class Parameter with _$Parameter {
 
     /// Specifies whether array or object parameters should be exploded.
     bool? explode,
+
+    /// The default value for the parameter.
+    dynamic example,
   }) = _Parameter;
 
   /// Creates a [Parameter] from a JSON object.

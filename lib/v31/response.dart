@@ -17,7 +17,7 @@ abstract class Response with _$Response {
   @JsonSerializable(includeIfNull: false, explicitToJson: true)
   const factory Response({
     /// A brief description of the response.
-    required String description,
+    String? description,
 
     /// The content of the response for OpenAPI 3.0.
     Map<String, MediaType>? content,
@@ -32,7 +32,11 @@ abstract class Response with _$Response {
 
     /// A map of OpenAPI extensions.
     @JsonKey(includeToJson: false, includeFromJson: false)
+    /// A map of OpenAPI extensions.
     Map<String, dynamic>? extensions,
+
+    /// A reference to a definition that contains the actual response content.
+    @JsonKey(name: r'$ref') String? ref,
   }) = _Response;
 
   const Response._();

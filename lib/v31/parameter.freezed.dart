@@ -31,7 +31,8 @@ mixin _$Parameter {
  Schema? get items;/// The maximum allowed value for a numeric parameter.
  num? get maximum;/// The minimum allowed value for a numeric parameter.
  num? get minimum;/// Specifies whether array or object parameters should be exploded.
- bool? get explode;
+ bool? get explode;/// The default value for the parameter.
+ dynamic get example;
 /// Create a copy of Parameter
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -44,16 +45,16 @@ $ParameterCopyWith<Parameter> get copyWith => _$ParameterCopyWithImpl<Parameter>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Parameter&&(identical(other.ref, ref) || other.ref == ref)&&(identical(other.name, name) || other.name == name)&&(identical(other.location, location) || other.location == location)&&(identical(other.description, description) || other.description == description)&&(identical(other.required, required) || other.required == required)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated)&&(identical(other.schema, schema) || other.schema == schema)&&(identical(other.type, type) || other.type == type)&&(identical(other.format, format) || other.format == format)&&(identical(other.collectionFormat, collectionFormat) || other.collectionFormat == collectionFormat)&&(identical(other.items, items) || other.items == items)&&(identical(other.maximum, maximum) || other.maximum == maximum)&&(identical(other.minimum, minimum) || other.minimum == minimum)&&(identical(other.explode, explode) || other.explode == explode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Parameter&&(identical(other.ref, ref) || other.ref == ref)&&(identical(other.name, name) || other.name == name)&&(identical(other.location, location) || other.location == location)&&(identical(other.description, description) || other.description == description)&&(identical(other.required, required) || other.required == required)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated)&&(identical(other.schema, schema) || other.schema == schema)&&(identical(other.type, type) || other.type == type)&&(identical(other.format, format) || other.format == format)&&(identical(other.collectionFormat, collectionFormat) || other.collectionFormat == collectionFormat)&&(identical(other.items, items) || other.items == items)&&(identical(other.maximum, maximum) || other.maximum == maximum)&&(identical(other.minimum, minimum) || other.minimum == minimum)&&(identical(other.explode, explode) || other.explode == explode)&&const DeepCollectionEquality().equals(other.example, example));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,ref,name,location,description,required,deprecated,schema,type,format,collectionFormat,items,maximum,minimum,explode);
+int get hashCode => Object.hash(runtimeType,ref,name,location,description,required,deprecated,schema,type,format,collectionFormat,items,maximum,minimum,explode,const DeepCollectionEquality().hash(example));
 
 @override
 String toString() {
-  return 'Parameter(ref: $ref, name: $name, location: $location, description: $description, required: $required, deprecated: $deprecated, schema: $schema, type: $type, format: $format, collectionFormat: $collectionFormat, items: $items, maximum: $maximum, minimum: $minimum, explode: $explode)';
+  return 'Parameter(ref: $ref, name: $name, location: $location, description: $description, required: $required, deprecated: $deprecated, schema: $schema, type: $type, format: $format, collectionFormat: $collectionFormat, items: $items, maximum: $maximum, minimum: $minimum, explode: $explode, example: $example)';
 }
 
 
@@ -64,7 +65,7 @@ abstract mixin class $ParameterCopyWith<$Res>  {
   factory $ParameterCopyWith(Parameter value, $Res Function(Parameter) _then) = _$ParameterCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: r'$ref') String? ref, String? name,@JsonKey(name: 'in') ParameterLocation? location, String? description, bool? required, bool? deprecated, Schema? schema, String? type, String? format, String? collectionFormat, Schema? items, num? maximum, num? minimum, bool? explode
+@JsonKey(name: r'$ref') String? ref, String? name,@JsonKey(name: 'in') ParameterLocation? location, String? description, bool? required, bool? deprecated, Schema? schema, String? type, String? format, String? collectionFormat, Schema? items, num? maximum, num? minimum, bool? explode, dynamic example
 });
 
 
@@ -81,7 +82,7 @@ class _$ParameterCopyWithImpl<$Res>
 
 /// Create a copy of Parameter
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? ref = freezed,Object? name = freezed,Object? location = freezed,Object? description = freezed,Object? required = freezed,Object? deprecated = freezed,Object? schema = freezed,Object? type = freezed,Object? format = freezed,Object? collectionFormat = freezed,Object? items = freezed,Object? maximum = freezed,Object? minimum = freezed,Object? explode = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? ref = freezed,Object? name = freezed,Object? location = freezed,Object? description = freezed,Object? required = freezed,Object? deprecated = freezed,Object? schema = freezed,Object? type = freezed,Object? format = freezed,Object? collectionFormat = freezed,Object? items = freezed,Object? maximum = freezed,Object? minimum = freezed,Object? explode = freezed,Object? example = freezed,}) {
   return _then(_self.copyWith(
 ref: freezed == ref ? _self.ref : ref // ignore: cast_nullable_to_non_nullable
 as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -97,7 +98,8 @@ as String?,items: freezed == items ? _self.items : items // ignore: cast_nullabl
 as Schema?,maximum: freezed == maximum ? _self.maximum : maximum // ignore: cast_nullable_to_non_nullable
 as num?,minimum: freezed == minimum ? _self.minimum : minimum // ignore: cast_nullable_to_non_nullable
 as num?,explode: freezed == explode ? _self.explode : explode // ignore: cast_nullable_to_non_nullable
-as bool?,
+as bool?,example: freezed == example ? _self.example : example // ignore: cast_nullable_to_non_nullable
+as dynamic,
   ));
 }
 /// Create a copy of Parameter
@@ -206,10 +208,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: r'$ref')  String? ref,  String? name, @JsonKey(name: 'in')  ParameterLocation? location,  String? description,  bool? required,  bool? deprecated,  Schema? schema,  String? type,  String? format,  String? collectionFormat,  Schema? items,  num? maximum,  num? minimum,  bool? explode)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: r'$ref')  String? ref,  String? name, @JsonKey(name: 'in')  ParameterLocation? location,  String? description,  bool? required,  bool? deprecated,  Schema? schema,  String? type,  String? format,  String? collectionFormat,  Schema? items,  num? maximum,  num? minimum,  bool? explode,  dynamic example)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Parameter() when $default != null:
-return $default(_that.ref,_that.name,_that.location,_that.description,_that.required,_that.deprecated,_that.schema,_that.type,_that.format,_that.collectionFormat,_that.items,_that.maximum,_that.minimum,_that.explode);case _:
+return $default(_that.ref,_that.name,_that.location,_that.description,_that.required,_that.deprecated,_that.schema,_that.type,_that.format,_that.collectionFormat,_that.items,_that.maximum,_that.minimum,_that.explode,_that.example);case _:
   return orElse();
 
 }
@@ -227,10 +229,10 @@ return $default(_that.ref,_that.name,_that.location,_that.description,_that.requ
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: r'$ref')  String? ref,  String? name, @JsonKey(name: 'in')  ParameterLocation? location,  String? description,  bool? required,  bool? deprecated,  Schema? schema,  String? type,  String? format,  String? collectionFormat,  Schema? items,  num? maximum,  num? minimum,  bool? explode)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: r'$ref')  String? ref,  String? name, @JsonKey(name: 'in')  ParameterLocation? location,  String? description,  bool? required,  bool? deprecated,  Schema? schema,  String? type,  String? format,  String? collectionFormat,  Schema? items,  num? maximum,  num? minimum,  bool? explode,  dynamic example)  $default,) {final _that = this;
 switch (_that) {
 case _Parameter():
-return $default(_that.ref,_that.name,_that.location,_that.description,_that.required,_that.deprecated,_that.schema,_that.type,_that.format,_that.collectionFormat,_that.items,_that.maximum,_that.minimum,_that.explode);case _:
+return $default(_that.ref,_that.name,_that.location,_that.description,_that.required,_that.deprecated,_that.schema,_that.type,_that.format,_that.collectionFormat,_that.items,_that.maximum,_that.minimum,_that.explode,_that.example);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -247,10 +249,10 @@ return $default(_that.ref,_that.name,_that.location,_that.description,_that.requ
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: r'$ref')  String? ref,  String? name, @JsonKey(name: 'in')  ParameterLocation? location,  String? description,  bool? required,  bool? deprecated,  Schema? schema,  String? type,  String? format,  String? collectionFormat,  Schema? items,  num? maximum,  num? minimum,  bool? explode)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: r'$ref')  String? ref,  String? name, @JsonKey(name: 'in')  ParameterLocation? location,  String? description,  bool? required,  bool? deprecated,  Schema? schema,  String? type,  String? format,  String? collectionFormat,  Schema? items,  num? maximum,  num? minimum,  bool? explode,  dynamic example)?  $default,) {final _that = this;
 switch (_that) {
 case _Parameter() when $default != null:
-return $default(_that.ref,_that.name,_that.location,_that.description,_that.required,_that.deprecated,_that.schema,_that.type,_that.format,_that.collectionFormat,_that.items,_that.maximum,_that.minimum,_that.explode);case _:
+return $default(_that.ref,_that.name,_that.location,_that.description,_that.required,_that.deprecated,_that.schema,_that.type,_that.format,_that.collectionFormat,_that.items,_that.maximum,_that.minimum,_that.explode,_that.example);case _:
   return null;
 
 }
@@ -262,7 +264,7 @@ return $default(_that.ref,_that.name,_that.location,_that.description,_that.requ
 
 @JsonSerializable(includeIfNull: false, explicitToJson: true)
 class _Parameter implements Parameter {
-  const _Parameter({@JsonKey(name: r'$ref') this.ref, this.name, @JsonKey(name: 'in') this.location, this.description, this.required, this.deprecated, this.schema, this.type, this.format, this.collectionFormat, this.items, this.maximum, this.minimum, this.explode});
+  const _Parameter({@JsonKey(name: r'$ref') this.ref, this.name, @JsonKey(name: 'in') this.location, this.description, this.required, this.deprecated, this.schema, this.type, this.format, this.collectionFormat, this.items, this.maximum, this.minimum, this.explode, this.example});
   factory _Parameter.fromJson(Map<String, dynamic> json) => _$ParameterFromJson(json);
 
 /// A reference to a Parameter Object, typically in the `components`
@@ -295,6 +297,8 @@ class _Parameter implements Parameter {
 @override final  num? minimum;
 /// Specifies whether array or object parameters should be exploded.
 @override final  bool? explode;
+/// The default value for the parameter.
+@override final  dynamic example;
 
 /// Create a copy of Parameter
 /// with the given fields replaced by the non-null parameter values.
@@ -309,16 +313,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Parameter&&(identical(other.ref, ref) || other.ref == ref)&&(identical(other.name, name) || other.name == name)&&(identical(other.location, location) || other.location == location)&&(identical(other.description, description) || other.description == description)&&(identical(other.required, required) || other.required == required)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated)&&(identical(other.schema, schema) || other.schema == schema)&&(identical(other.type, type) || other.type == type)&&(identical(other.format, format) || other.format == format)&&(identical(other.collectionFormat, collectionFormat) || other.collectionFormat == collectionFormat)&&(identical(other.items, items) || other.items == items)&&(identical(other.maximum, maximum) || other.maximum == maximum)&&(identical(other.minimum, minimum) || other.minimum == minimum)&&(identical(other.explode, explode) || other.explode == explode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Parameter&&(identical(other.ref, ref) || other.ref == ref)&&(identical(other.name, name) || other.name == name)&&(identical(other.location, location) || other.location == location)&&(identical(other.description, description) || other.description == description)&&(identical(other.required, required) || other.required == required)&&(identical(other.deprecated, deprecated) || other.deprecated == deprecated)&&(identical(other.schema, schema) || other.schema == schema)&&(identical(other.type, type) || other.type == type)&&(identical(other.format, format) || other.format == format)&&(identical(other.collectionFormat, collectionFormat) || other.collectionFormat == collectionFormat)&&(identical(other.items, items) || other.items == items)&&(identical(other.maximum, maximum) || other.maximum == maximum)&&(identical(other.minimum, minimum) || other.minimum == minimum)&&(identical(other.explode, explode) || other.explode == explode)&&const DeepCollectionEquality().equals(other.example, example));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,ref,name,location,description,required,deprecated,schema,type,format,collectionFormat,items,maximum,minimum,explode);
+int get hashCode => Object.hash(runtimeType,ref,name,location,description,required,deprecated,schema,type,format,collectionFormat,items,maximum,minimum,explode,const DeepCollectionEquality().hash(example));
 
 @override
 String toString() {
-  return 'Parameter(ref: $ref, name: $name, location: $location, description: $description, required: $required, deprecated: $deprecated, schema: $schema, type: $type, format: $format, collectionFormat: $collectionFormat, items: $items, maximum: $maximum, minimum: $minimum, explode: $explode)';
+  return 'Parameter(ref: $ref, name: $name, location: $location, description: $description, required: $required, deprecated: $deprecated, schema: $schema, type: $type, format: $format, collectionFormat: $collectionFormat, items: $items, maximum: $maximum, minimum: $minimum, explode: $explode, example: $example)';
 }
 
 
@@ -329,7 +333,7 @@ abstract mixin class _$ParameterCopyWith<$Res> implements $ParameterCopyWith<$Re
   factory _$ParameterCopyWith(_Parameter value, $Res Function(_Parameter) _then) = __$ParameterCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: r'$ref') String? ref, String? name,@JsonKey(name: 'in') ParameterLocation? location, String? description, bool? required, bool? deprecated, Schema? schema, String? type, String? format, String? collectionFormat, Schema? items, num? maximum, num? minimum, bool? explode
+@JsonKey(name: r'$ref') String? ref, String? name,@JsonKey(name: 'in') ParameterLocation? location, String? description, bool? required, bool? deprecated, Schema? schema, String? type, String? format, String? collectionFormat, Schema? items, num? maximum, num? minimum, bool? explode, dynamic example
 });
 
 
@@ -346,7 +350,7 @@ class __$ParameterCopyWithImpl<$Res>
 
 /// Create a copy of Parameter
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? ref = freezed,Object? name = freezed,Object? location = freezed,Object? description = freezed,Object? required = freezed,Object? deprecated = freezed,Object? schema = freezed,Object? type = freezed,Object? format = freezed,Object? collectionFormat = freezed,Object? items = freezed,Object? maximum = freezed,Object? minimum = freezed,Object? explode = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? ref = freezed,Object? name = freezed,Object? location = freezed,Object? description = freezed,Object? required = freezed,Object? deprecated = freezed,Object? schema = freezed,Object? type = freezed,Object? format = freezed,Object? collectionFormat = freezed,Object? items = freezed,Object? maximum = freezed,Object? minimum = freezed,Object? explode = freezed,Object? example = freezed,}) {
   return _then(_Parameter(
 ref: freezed == ref ? _self.ref : ref // ignore: cast_nullable_to_non_nullable
 as String?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -362,7 +366,8 @@ as String?,items: freezed == items ? _self.items : items // ignore: cast_nullabl
 as Schema?,maximum: freezed == maximum ? _self.maximum : maximum // ignore: cast_nullable_to_non_nullable
 as num?,minimum: freezed == minimum ? _self.minimum : minimum // ignore: cast_nullable_to_non_nullable
 as num?,explode: freezed == explode ? _self.explode : explode // ignore: cast_nullable_to_non_nullable
-as bool?,
+as bool?,example: freezed == example ? _self.example : example // ignore: cast_nullable_to_non_nullable
+as dynamic,
   ));
 }
 

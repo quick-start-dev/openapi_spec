@@ -16,13 +16,14 @@ T _$identity<T>(T value) => value;
 mixin _$Response {
 
 /// A brief description of the response.
- String get description;/// The content of the response for OpenAPI 3.0.
+ String? get description;/// The content of the response for OpenAPI 3.0.
  Map<String, MediaType>? get content;/// A map of headers for this response.
  Map<String, Header>? get headers;/// A map of operations links that can be followed from the response.
 /// The key of the map is a short name for the link,
 /// following the naming constraints of the names for Component Objects.
  Map<String, Link>? get links;/// A map of OpenAPI extensions.
-@JsonKey(includeToJson: false, includeFromJson: false) Map<String, dynamic>? get extensions;
+@JsonKey(includeToJson: false, includeFromJson: false) Map<String, dynamic>? get extensions;/// A reference to a definition that contains the actual response content.
+@JsonKey(name: r'$ref') String? get ref;
 /// Create a copy of Response
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -33,16 +34,16 @@ $ResponseCopyWith<Response> get copyWith => _$ResponseCopyWithImpl<Response>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Response&&(identical(other.description, description) || other.description == description)&&const DeepCollectionEquality().equals(other.content, content)&&const DeepCollectionEquality().equals(other.headers, headers)&&const DeepCollectionEquality().equals(other.links, links)&&const DeepCollectionEquality().equals(other.extensions, extensions));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Response&&(identical(other.description, description) || other.description == description)&&const DeepCollectionEquality().equals(other.content, content)&&const DeepCollectionEquality().equals(other.headers, headers)&&const DeepCollectionEquality().equals(other.links, links)&&const DeepCollectionEquality().equals(other.extensions, extensions)&&(identical(other.ref, ref) || other.ref == ref));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,description,const DeepCollectionEquality().hash(content),const DeepCollectionEquality().hash(headers),const DeepCollectionEquality().hash(links),const DeepCollectionEquality().hash(extensions));
+int get hashCode => Object.hash(runtimeType,description,const DeepCollectionEquality().hash(content),const DeepCollectionEquality().hash(headers),const DeepCollectionEquality().hash(links),const DeepCollectionEquality().hash(extensions),ref);
 
 @override
 String toString() {
-  return 'Response(description: $description, content: $content, headers: $headers, links: $links, extensions: $extensions)';
+  return 'Response(description: $description, content: $content, headers: $headers, links: $links, extensions: $extensions, ref: $ref)';
 }
 
 
@@ -53,7 +54,7 @@ abstract mixin class $ResponseCopyWith<$Res>  {
   factory $ResponseCopyWith(Response value, $Res Function(Response) _then) = _$ResponseCopyWithImpl;
 @useResult
 $Res call({
- String description, Map<String, MediaType>? content, Map<String, Header>? headers, Map<String, Link>? links,@JsonKey(includeToJson: false, includeFromJson: false) Map<String, dynamic>? extensions
+ String? description, Map<String, MediaType>? content, Map<String, Header>? headers, Map<String, Link>? links,@JsonKey(includeToJson: false, includeFromJson: false) Map<String, dynamic>? extensions,@JsonKey(name: r'$ref') String? ref
 });
 
 
@@ -70,14 +71,15 @@ class _$ResponseCopyWithImpl<$Res>
 
 /// Create a copy of Response
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? description = null,Object? content = freezed,Object? headers = freezed,Object? links = freezed,Object? extensions = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? description = freezed,Object? content = freezed,Object? headers = freezed,Object? links = freezed,Object? extensions = freezed,Object? ref = freezed,}) {
   return _then(_self.copyWith(
-description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String,content: freezed == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
+description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,content: freezed == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
 as Map<String, MediaType>?,headers: freezed == headers ? _self.headers : headers // ignore: cast_nullable_to_non_nullable
 as Map<String, Header>?,links: freezed == links ? _self.links : links // ignore: cast_nullable_to_non_nullable
 as Map<String, Link>?,extensions: freezed == extensions ? _self.extensions : extensions // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,
+as Map<String, dynamic>?,ref: freezed == ref ? _self.ref : ref // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -162,10 +164,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String description,  Map<String, MediaType>? content,  Map<String, Header>? headers,  Map<String, Link>? links, @JsonKey(includeToJson: false, includeFromJson: false)  Map<String, dynamic>? extensions)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? description,  Map<String, MediaType>? content,  Map<String, Header>? headers,  Map<String, Link>? links, @JsonKey(includeToJson: false, includeFromJson: false)  Map<String, dynamic>? extensions, @JsonKey(name: r'$ref')  String? ref)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Response() when $default != null:
-return $default(_that.description,_that.content,_that.headers,_that.links,_that.extensions);case _:
+return $default(_that.description,_that.content,_that.headers,_that.links,_that.extensions,_that.ref);case _:
   return orElse();
 
 }
@@ -183,10 +185,10 @@ return $default(_that.description,_that.content,_that.headers,_that.links,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String description,  Map<String, MediaType>? content,  Map<String, Header>? headers,  Map<String, Link>? links, @JsonKey(includeToJson: false, includeFromJson: false)  Map<String, dynamic>? extensions)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? description,  Map<String, MediaType>? content,  Map<String, Header>? headers,  Map<String, Link>? links, @JsonKey(includeToJson: false, includeFromJson: false)  Map<String, dynamic>? extensions, @JsonKey(name: r'$ref')  String? ref)  $default,) {final _that = this;
 switch (_that) {
 case _Response():
-return $default(_that.description,_that.content,_that.headers,_that.links,_that.extensions);case _:
+return $default(_that.description,_that.content,_that.headers,_that.links,_that.extensions,_that.ref);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -203,10 +205,10 @@ return $default(_that.description,_that.content,_that.headers,_that.links,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String description,  Map<String, MediaType>? content,  Map<String, Header>? headers,  Map<String, Link>? links, @JsonKey(includeToJson: false, includeFromJson: false)  Map<String, dynamic>? extensions)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? description,  Map<String, MediaType>? content,  Map<String, Header>? headers,  Map<String, Link>? links, @JsonKey(includeToJson: false, includeFromJson: false)  Map<String, dynamic>? extensions, @JsonKey(name: r'$ref')  String? ref)?  $default,) {final _that = this;
 switch (_that) {
 case _Response() when $default != null:
-return $default(_that.description,_that.content,_that.headers,_that.links,_that.extensions);case _:
+return $default(_that.description,_that.content,_that.headers,_that.links,_that.extensions,_that.ref);case _:
   return null;
 
 }
@@ -218,11 +220,11 @@ return $default(_that.description,_that.content,_that.headers,_that.links,_that.
 
 @JsonSerializable(includeIfNull: false, explicitToJson: true)
 class _Response extends Response {
-  const _Response({required this.description, final  Map<String, MediaType>? content, final  Map<String, Header>? headers, final  Map<String, Link>? links, @JsonKey(includeToJson: false, includeFromJson: false) final  Map<String, dynamic>? extensions}): _content = content,_headers = headers,_links = links,_extensions = extensions,super._();
+  const _Response({this.description, final  Map<String, MediaType>? content, final  Map<String, Header>? headers, final  Map<String, Link>? links, @JsonKey(includeToJson: false, includeFromJson: false) final  Map<String, dynamic>? extensions, @JsonKey(name: r'$ref') this.ref}): _content = content,_headers = headers,_links = links,_extensions = extensions,super._();
   factory _Response.fromJson(Map<String, dynamic> json) => _$ResponseFromJson(json);
 
 /// A brief description of the response.
-@override final  String description;
+@override final  String? description;
 /// The content of the response for OpenAPI 3.0.
  final  Map<String, MediaType>? _content;
 /// The content of the response for OpenAPI 3.0.
@@ -271,6 +273,8 @@ class _Response extends Response {
   return EqualUnmodifiableMapView(value);
 }
 
+/// A reference to a definition that contains the actual response content.
+@override@JsonKey(name: r'$ref') final  String? ref;
 
 /// Create a copy of Response
 /// with the given fields replaced by the non-null parameter values.
@@ -282,16 +286,16 @@ _$ResponseCopyWith<_Response> get copyWith => __$ResponseCopyWithImpl<_Response>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Response&&(identical(other.description, description) || other.description == description)&&const DeepCollectionEquality().equals(other._content, _content)&&const DeepCollectionEquality().equals(other._headers, _headers)&&const DeepCollectionEquality().equals(other._links, _links)&&const DeepCollectionEquality().equals(other._extensions, _extensions));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Response&&(identical(other.description, description) || other.description == description)&&const DeepCollectionEquality().equals(other._content, _content)&&const DeepCollectionEquality().equals(other._headers, _headers)&&const DeepCollectionEquality().equals(other._links, _links)&&const DeepCollectionEquality().equals(other._extensions, _extensions)&&(identical(other.ref, ref) || other.ref == ref));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,description,const DeepCollectionEquality().hash(_content),const DeepCollectionEquality().hash(_headers),const DeepCollectionEquality().hash(_links),const DeepCollectionEquality().hash(_extensions));
+int get hashCode => Object.hash(runtimeType,description,const DeepCollectionEquality().hash(_content),const DeepCollectionEquality().hash(_headers),const DeepCollectionEquality().hash(_links),const DeepCollectionEquality().hash(_extensions),ref);
 
 @override
 String toString() {
-  return 'Response(description: $description, content: $content, headers: $headers, links: $links, extensions: $extensions)';
+  return 'Response(description: $description, content: $content, headers: $headers, links: $links, extensions: $extensions, ref: $ref)';
 }
 
 
@@ -302,7 +306,7 @@ abstract mixin class _$ResponseCopyWith<$Res> implements $ResponseCopyWith<$Res>
   factory _$ResponseCopyWith(_Response value, $Res Function(_Response) _then) = __$ResponseCopyWithImpl;
 @override @useResult
 $Res call({
- String description, Map<String, MediaType>? content, Map<String, Header>? headers, Map<String, Link>? links,@JsonKey(includeToJson: false, includeFromJson: false) Map<String, dynamic>? extensions
+ String? description, Map<String, MediaType>? content, Map<String, Header>? headers, Map<String, Link>? links,@JsonKey(includeToJson: false, includeFromJson: false) Map<String, dynamic>? extensions,@JsonKey(name: r'$ref') String? ref
 });
 
 
@@ -319,14 +323,15 @@ class __$ResponseCopyWithImpl<$Res>
 
 /// Create a copy of Response
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? description = null,Object? content = freezed,Object? headers = freezed,Object? links = freezed,Object? extensions = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? description = freezed,Object? content = freezed,Object? headers = freezed,Object? links = freezed,Object? extensions = freezed,Object? ref = freezed,}) {
   return _then(_Response(
-description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String,content: freezed == content ? _self._content : content // ignore: cast_nullable_to_non_nullable
+description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,content: freezed == content ? _self._content : content // ignore: cast_nullable_to_non_nullable
 as Map<String, MediaType>?,headers: freezed == headers ? _self._headers : headers // ignore: cast_nullable_to_non_nullable
 as Map<String, Header>?,links: freezed == links ? _self._links : links // ignore: cast_nullable_to_non_nullable
 as Map<String, Link>?,extensions: freezed == extensions ? _self._extensions : extensions // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,
+as Map<String, dynamic>?,ref: freezed == ref ? _self.ref : ref // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

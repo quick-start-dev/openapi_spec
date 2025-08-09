@@ -27,6 +27,7 @@ _Parameter _$ParameterFromJson(Map<String, dynamic> json) => _Parameter(
   maximum: json['maximum'] as num?,
   minimum: json['minimum'] as num?,
   explode: json['explode'] as bool?,
+  example: json['example'],
 );
 
 Map<String, dynamic> _$ParameterToJson(
@@ -47,6 +48,7 @@ Map<String, dynamic> _$ParameterToJson(
   if (instance.maximum case final value?) 'maximum': value,
   if (instance.minimum case final value?) 'minimum': value,
   if (instance.explode case final value?) 'explode': value,
+  if (instance.example case final value?) 'example': value,
 };
 
 const _$ParameterLocationEnumMap = {
