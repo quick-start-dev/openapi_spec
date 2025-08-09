@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:openapi_spec/v20/v20.dart';
+import 'package:openapi_spec/v20.dart';
 import 'package:test/test.dart';
 
 void main() {
