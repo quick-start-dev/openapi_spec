@@ -1,39 +1,157 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages). 
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages). 
--->
+# openapi_spec_plus
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+[![pub package](https://img.shields.io/pub/v/openapi_spec_plus.svg)](https://pub.dev/packages/openapi_spec_plus)
+[![build](https://github.com/quick-start.dev/openapi_spec_plus/actions/workflows/build.yml/badge.svg)](https://github.com/quick-start.dev/openapi_spec_plus/actions/workflows/build.yml)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+A Dart library for parsing and working with OpenAPI Specifications (v2.0, v3.0, and v3.1).
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Supports OpenAPI Specification versions 2.0, 3.0, and 3.1  
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+To use this package, you need Dart SDK installed. Then add the package to your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  openapi_spec_plus: ^1.0.0
+````
+
+Run the following command to install the package:
+
+```bash
+dart pub get
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+Here are some simple examples for common use cases. For more examples, see the `/example` folder.
+
+### Parse OpenAPI 3.1 JSON Spec
 
 ```dart
-const like = 'sample';
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:openapi_spec_plus/v31.dart' as v31;
+
+void main() {
+  final file = File('test/fixtures/petstore_v31.json');
+  final content = file.readAsStringSync();
+
+  final spec = v31.OpenAPI.fromJson(jsonDecode(content));
+  print('API title: ${spec.info.title}');
+}
 ```
 
-## Additional information
+### Parse OpenAPI 3.1 YAML Spec
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+```dart
+import 'dart:io';
+
+import 'package:openapi_spec_plus/v31.dart' as v31;
+import 'package:openapi_spec_plus/src/parser/yaml_utils.dart';
+
+void main() {
+  final file = File('test/fixtures/openapi-v31.yaml');
+  final content = file.readAsStringSync();
+
+  final orgJson = yamlToMap(content);
+  final spec = v31.OpenAPI.fromJson(orgJson);
+  print('API title: ${spec.info.title}');
+}
+```
+
+### Parse OpenAPI 2.0 JSON Spec
+
+```dart
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:openapi_spec_plus/v20.dart' as v20;
+
+void main() {
+  final file = File('test/fixtures/petstore_v20.json');
+  final content = file.readAsStringSync();
+
+  final spec = v20.OpenAPI.fromJson(jsonDecode(content));
+  print('API title: ${spec.info.title}');
+}
+```
+
+### Parse OpenAPI 3.0 YAML Spec
+
+```dart
+import 'dart:io';
+
+import 'package:openapi_spec_plus/v30.dart' as v30;
+import 'package:openapi_spec_plus/src/parser/yaml_utils.dart';
+
+void main() {
+  final file = File('test/fixtures/openapi-v30.yaml');
+  final content = file.readAsStringSync();
+
+  final orgJson = yamlToMap(content);
+  final spec = v30.OpenAPI.fromJson(orgJson);
+  print('API title: ${spec.info.title}');
+}
+```
+
+---
+
+### Creating OpenAPI Spec Instances Manually
+
+```dart
+import 'package:openapi_spec_plus/v20.dart' as v20;
+import 'package:openapi_spec_plus/v30.dart' as v30;
+import 'package:openapi_spec_plus/v31.dart' as v31;
+
+void main() {
+  const specV20 = v20.OpenAPI(
+    info: v20.Info(title: 'Test API', version: '1.0.0'),
+  );
+
+  const specV30 = v30.OpenAPI(
+    openapi: '3.0.4',
+    info: v30.Info(title: 'Test API', version: '1.0.0'),
+  );
+
+  const specV31 = v31.OpenAPI(
+    openapi: '3.1.0',
+    info: v31.Info(title: 'Test API', version: '1.0.0'),
+  );
+
+  print(specV20.toJson());
+  print(specV30.toJson());
+  print(specV31.toJson());
+}
+```
+
+---
+
+## Package Structure
+
+* `lib/v20.dart` — OpenAPI 2.0 classes
+* `lib/v30.dart` — OpenAPI 3.0 classes
+* `lib/v31.dart` — OpenAPI 3.1 classes
+* `lib/openapi_spec_plus.dart` — Main parser with automatic version detection
+
+---
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests on GitHub.
+
+---
+
+## License
+
+MIT License. See the LICENSE file for details.
+
+
+
+---
