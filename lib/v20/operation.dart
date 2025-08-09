@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:openapi_spec/v20/parameter.dart';
-import 'package:openapi_spec/v20/request_body.dart';
-import 'package:openapi_spec/v20/response.dart';
-import 'package:openapi_spec/v20/security.dart';
+import 'package:openapi_spec_plus/v20/parameter.dart';
+import 'package:openapi_spec_plus/v20/request_body.dart';
+import 'package:openapi_spec_plus/v20/response.dart';
+import 'package:openapi_spec_plus/v20/security.dart';
 
 part 'operation.freezed.dart';
 part 'operation.g.dart';

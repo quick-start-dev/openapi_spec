@@ -40,7 +40,6 @@ _OpenAPI _$OpenAPIFromJson(Map<String, dynamic> json) => _OpenAPI(
       json['externalDocs'] == null
           ? null
           : ExternalDocs.fromJson(json['externalDocs'] as Map<String, dynamic>),
-  extensions: json['extensions'] as Map<String, dynamic>?,
 );
 
 Map<String, dynamic> _$OpenAPIToJson(_OpenAPI instance) => <String, dynamic>{
@@ -52,5 +51,4 @@ Map<String, dynamic> _$OpenAPIToJson(_OpenAPI instance) => <String, dynamic>{
   'security': instance.security.map((e) => e.toJson()).toList(),
   'tags': instance.tags.map((e) => e.toJson()).toList(),
   if (instance.externalDocs?.toJson() case final value?) 'externalDocs': value,
-  if (instance.extensions case final value?) 'extensions': value,
 };

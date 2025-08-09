@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:openapi_spec/src/util/yaml_utils.dart' show yamlToMap;
-import 'package:openapi_spec/v31.dart';
+import 'package:openapi_spec_plus/src/util/yaml_utils.dart' show yamlToMap;
+import 'package:openapi_spec_plus/v31.dart';
 import 'package:test/test.dart';
 
 void main() {

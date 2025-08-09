@@ -50,7 +50,6 @@ _PathItem _$PathItemFromJson(Map<String, dynamic> json) => _PathItem(
       (json['parameters'] as List<dynamic>?)
           ?.map((e) => Parameter.fromJson(e as Map<String, dynamic>))
           .toList(),
-  extensions: json['extensions'] as Map<String, dynamic>?,
 );
 
 Map<String, dynamic> _$PathItemToJson(_PathItem instance) => <String, dynamic>{
@@ -69,5 +68,4 @@ Map<String, dynamic> _$PathItemToJson(_PathItem instance) => <String, dynamic>{
     'servers': value,
   if (instance.parameters?.map((e) => e.toJson()).toList() case final value?)
     'parameters': value,
-  if (instance.extensions case final value?) 'extensions': value,
 };

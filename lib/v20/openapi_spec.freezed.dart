@@ -28,8 +28,8 @@ mixin _$OpenAPI {
  Map<String, SecurityScheme> get securityDefinitions;/// A declaration of which security schemes are required for the entire API.
  List<SecurityRequirement> get security;/// External documentation for the API.
  ExternalDocs? get externalDocs;/// A list of tags for API documentation.
- List<Tag> get tags;/// A map of OpenAPI extensions.
- Map<String, dynamic>? get extensions;
+ List<Tag> get tags;/// Vendor extensions (keys like `x-*`).
+@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? get extensions;
 /// Create a copy of OpenAPI
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -60,7 +60,7 @@ abstract mixin class $OpenAPICopyWith<$Res>  {
   factory $OpenAPICopyWith(OpenAPI value, $Res Function(OpenAPI) _then) = _$OpenAPICopyWithImpl;
 @useResult
 $Res call({
- String swagger, Info? info, String? host, String? basePath, List<String>? schemes, List<String>? consumes, List<String>? produces, Map<String, PathItem> paths, Map<String, Schema> definitions, Map<String, SecurityScheme> securityDefinitions, List<SecurityRequirement> security, ExternalDocs? externalDocs, List<Tag> tags, Map<String, dynamic>? extensions
+ String swagger, Info? info, String? host, String? basePath, List<String>? schemes, List<String>? consumes, List<String>? produces, Map<String, PathItem> paths, Map<String, Schema> definitions, Map<String, SecurityScheme> securityDefinitions, List<SecurityRequirement> security, ExternalDocs? externalDocs, List<Tag> tags,@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? extensions
 });
 
 
@@ -202,7 +202,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String swagger,  Info? info,  String? host,  String? basePath,  List<String>? schemes,  List<String>? consumes,  List<String>? produces,  Map<String, PathItem> paths,  Map<String, Schema> definitions,  Map<String, SecurityScheme> securityDefinitions,  List<SecurityRequirement> security,  ExternalDocs? externalDocs,  List<Tag> tags,  Map<String, dynamic>? extensions)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String swagger,  Info? info,  String? host,  String? basePath,  List<String>? schemes,  List<String>? consumes,  List<String>? produces,  Map<String, PathItem> paths,  Map<String, Schema> definitions,  Map<String, SecurityScheme> securityDefinitions,  List<SecurityRequirement> security,  ExternalDocs? externalDocs,  List<Tag> tags, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _OpenAPI() when $default != null:
 return $default(_that.swagger,_that.info,_that.host,_that.basePath,_that.schemes,_that.consumes,_that.produces,_that.paths,_that.definitions,_that.securityDefinitions,_that.security,_that.externalDocs,_that.tags,_that.extensions);case _:
@@ -223,7 +223,7 @@ return $default(_that.swagger,_that.info,_that.host,_that.basePath,_that.schemes
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String swagger,  Info? info,  String? host,  String? basePath,  List<String>? schemes,  List<String>? consumes,  List<String>? produces,  Map<String, PathItem> paths,  Map<String, Schema> definitions,  Map<String, SecurityScheme> securityDefinitions,  List<SecurityRequirement> security,  ExternalDocs? externalDocs,  List<Tag> tags,  Map<String, dynamic>? extensions)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String swagger,  Info? info,  String? host,  String? basePath,  List<String>? schemes,  List<String>? consumes,  List<String>? produces,  Map<String, PathItem> paths,  Map<String, Schema> definitions,  Map<String, SecurityScheme> securityDefinitions,  List<SecurityRequirement> security,  ExternalDocs? externalDocs,  List<Tag> tags, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)  $default,) {final _that = this;
 switch (_that) {
 case _OpenAPI():
 return $default(_that.swagger,_that.info,_that.host,_that.basePath,_that.schemes,_that.consumes,_that.produces,_that.paths,_that.definitions,_that.securityDefinitions,_that.security,_that.externalDocs,_that.tags,_that.extensions);case _:
@@ -243,7 +243,7 @@ return $default(_that.swagger,_that.info,_that.host,_that.basePath,_that.schemes
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String swagger,  Info? info,  String? host,  String? basePath,  List<String>? schemes,  List<String>? consumes,  List<String>? produces,  Map<String, PathItem> paths,  Map<String, Schema> definitions,  Map<String, SecurityScheme> securityDefinitions,  List<SecurityRequirement> security,  ExternalDocs? externalDocs,  List<Tag> tags,  Map<String, dynamic>? extensions)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String swagger,  Info? info,  String? host,  String? basePath,  List<String>? schemes,  List<String>? consumes,  List<String>? produces,  Map<String, PathItem> paths,  Map<String, Schema> definitions,  Map<String, SecurityScheme> securityDefinitions,  List<SecurityRequirement> security,  ExternalDocs? externalDocs,  List<Tag> tags, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)?  $default,) {final _that = this;
 switch (_that) {
 case _OpenAPI() when $default != null:
 return $default(_that.swagger,_that.info,_that.host,_that.basePath,_that.schemes,_that.consumes,_that.produces,_that.paths,_that.definitions,_that.securityDefinitions,_that.security,_that.externalDocs,_that.tags,_that.extensions);case _:
@@ -258,7 +258,7 @@ return $default(_that.swagger,_that.info,_that.host,_that.basePath,_that.schemes
 
 @JsonSerializable(includeIfNull: false, explicitToJson: true)
 class _OpenAPI extends OpenAPI {
-  const _OpenAPI({this.swagger = '2.0', this.info, this.host, this.basePath, final  List<String>? schemes, final  List<String>? consumes, final  List<String>? produces, final  Map<String, PathItem> paths = const {}, final  Map<String, Schema> definitions = const {}, final  Map<String, SecurityScheme> securityDefinitions = const {}, final  List<SecurityRequirement> security = const [], this.externalDocs, final  List<Tag> tags = const [], final  Map<String, dynamic>? extensions}): _schemes = schemes,_consumes = consumes,_produces = produces,_paths = paths,_definitions = definitions,_securityDefinitions = securityDefinitions,_security = security,_tags = tags,_extensions = extensions,super._();
+  const _OpenAPI({this.swagger = '2.0', this.info, this.host, this.basePath, final  List<String>? schemes, final  List<String>? consumes, final  List<String>? produces, final  Map<String, PathItem> paths = const {}, final  Map<String, Schema> definitions = const {}, final  Map<String, SecurityScheme> securityDefinitions = const {}, final  List<SecurityRequirement> security = const [], this.externalDocs, final  List<Tag> tags = const [], @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) final  Map<String, dynamic>? extensions}): _schemes = schemes,_consumes = consumes,_produces = produces,_paths = paths,_definitions = definitions,_securityDefinitions = securityDefinitions,_security = security,_tags = tags,_extensions = extensions,super._();
   factory _OpenAPI.fromJson(Map<String, dynamic> json) => _$OpenAPIFromJson(json);
 
 /// The version of the Swagger specification.
@@ -349,10 +349,10 @@ class _OpenAPI extends OpenAPI {
   return EqualUnmodifiableListView(_tags);
 }
 
-/// A map of OpenAPI extensions.
+/// Vendor extensions (keys like `x-*`).
  final  Map<String, dynamic>? _extensions;
-/// A map of OpenAPI extensions.
-@override Map<String, dynamic>? get extensions {
+/// Vendor extensions (keys like `x-*`).
+@override@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? get extensions {
   final value = _extensions;
   if (value == null) return null;
   if (_extensions is EqualUnmodifiableMapView) return _extensions;
@@ -391,7 +391,7 @@ abstract mixin class _$OpenAPICopyWith<$Res> implements $OpenAPICopyWith<$Res> {
   factory _$OpenAPICopyWith(_OpenAPI value, $Res Function(_OpenAPI) _then) = __$OpenAPICopyWithImpl;
 @override @useResult
 $Res call({
- String swagger, Info? info, String? host, String? basePath, List<String>? schemes, List<String>? consumes, List<String>? produces, Map<String, PathItem> paths, Map<String, Schema> definitions, Map<String, SecurityScheme> securityDefinitions, List<SecurityRequirement> security, ExternalDocs? externalDocs, List<Tag> tags, Map<String, dynamic>? extensions
+ String swagger, Info? info, String? host, String? basePath, List<String>? schemes, List<String>? consumes, List<String>? produces, Map<String, PathItem> paths, Map<String, Schema> definitions, Map<String, SecurityScheme> securityDefinitions, List<SecurityRequirement> security, ExternalDocs? externalDocs, List<Tag> tags,@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? extensions
 });
 
 

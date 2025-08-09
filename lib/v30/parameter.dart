@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:openapi_spec/src/util/enums.dart';
-import 'package:openapi_spec/v30/schema.dart';
+import 'package:openapi_spec_plus/src/util/enums.dart';
+import 'package:openapi_spec_plus/v30/schema.dart';
 
 part 'parameter.freezed.dart';
 part 'parameter.g.dart';

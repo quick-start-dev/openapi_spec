@@ -36,7 +36,8 @@ mixin _$PathItem {
 /// The field name MUST begin with x-, for example, x-internal-id.
 /// The value can be null, a primitive, an array or an object.
 /// See Vendor Extensions for further details.
- Map<String, dynamic>? get extensions;
+/// Vendor extensions (keys like `x-*`).
+@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? get extensions;
 /// Create a copy of PathItem
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -69,7 +70,7 @@ abstract mixin class $PathItemCopyWith<$Res>  {
   factory $PathItemCopyWith(PathItem value, $Res Function(PathItem) _then) = _$PathItemCopyWithImpl;
 @useResult
 $Res call({
- Operation? get, Operation? post, Operation? put, Operation? delete, Operation? patch, Operation? options, Operation? head, Operation? trace,@JsonKey(name: r'$ref') String? ref, List<Parameter>? parameters, Map<String, dynamic>? extensions
+ Operation? get, Operation? post, Operation? put, Operation? delete, Operation? patch, Operation? options, Operation? head, Operation? trace,@JsonKey(name: r'$ref') String? ref, List<Parameter>? parameters,@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? extensions
 });
 
 
@@ -280,7 +281,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Operation? get,  Operation? post,  Operation? put,  Operation? delete,  Operation? patch,  Operation? options,  Operation? head,  Operation? trace, @JsonKey(name: r'$ref')  String? ref,  List<Parameter>? parameters,  Map<String, dynamic>? extensions)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Operation? get,  Operation? post,  Operation? put,  Operation? delete,  Operation? patch,  Operation? options,  Operation? head,  Operation? trace, @JsonKey(name: r'$ref')  String? ref,  List<Parameter>? parameters, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PathItem() when $default != null:
 return $default(_that.get,_that.post,_that.put,_that.delete,_that.patch,_that.options,_that.head,_that.trace,_that.ref,_that.parameters,_that.extensions);case _:
@@ -301,7 +302,7 @@ return $default(_that.get,_that.post,_that.put,_that.delete,_that.patch,_that.op
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Operation? get,  Operation? post,  Operation? put,  Operation? delete,  Operation? patch,  Operation? options,  Operation? head,  Operation? trace, @JsonKey(name: r'$ref')  String? ref,  List<Parameter>? parameters,  Map<String, dynamic>? extensions)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Operation? get,  Operation? post,  Operation? put,  Operation? delete,  Operation? patch,  Operation? options,  Operation? head,  Operation? trace, @JsonKey(name: r'$ref')  String? ref,  List<Parameter>? parameters, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)  $default,) {final _that = this;
 switch (_that) {
 case _PathItem():
 return $default(_that.get,_that.post,_that.put,_that.delete,_that.patch,_that.options,_that.head,_that.trace,_that.ref,_that.parameters,_that.extensions);case _:
@@ -321,7 +322,7 @@ return $default(_that.get,_that.post,_that.put,_that.delete,_that.patch,_that.op
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Operation? get,  Operation? post,  Operation? put,  Operation? delete,  Operation? patch,  Operation? options,  Operation? head,  Operation? trace, @JsonKey(name: r'$ref')  String? ref,  List<Parameter>? parameters,  Map<String, dynamic>? extensions)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Operation? get,  Operation? post,  Operation? put,  Operation? delete,  Operation? patch,  Operation? options,  Operation? head,  Operation? trace, @JsonKey(name: r'$ref')  String? ref,  List<Parameter>? parameters, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)?  $default,) {final _that = this;
 switch (_that) {
 case _PathItem() when $default != null:
 return $default(_that.get,_that.post,_that.put,_that.delete,_that.patch,_that.options,_that.head,_that.trace,_that.ref,_that.parameters,_that.extensions);case _:
@@ -336,7 +337,7 @@ return $default(_that.get,_that.post,_that.put,_that.delete,_that.patch,_that.op
 
 @JsonSerializable(includeIfNull: false, explicitToJson: true)
 class _PathItem implements PathItem {
-  const _PathItem({this.get, this.post, this.put, this.delete, this.patch, this.options, this.head, this.trace, @JsonKey(name: r'$ref') this.ref, final  List<Parameter>? parameters, final  Map<String, dynamic>? extensions}): _parameters = parameters,_extensions = extensions;
+  const _PathItem({this.get, this.post, this.put, this.delete, this.patch, this.options, this.head, this.trace, @JsonKey(name: r'$ref') this.ref, final  List<Parameter>? parameters, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) final  Map<String, dynamic>? extensions}): _parameters = parameters,_extensions = extensions;
   factory _PathItem.fromJson(Map<String, dynamic> json) => _$PathItemFromJson(json);
 
 /// The definition for the `GET` operation.
@@ -387,12 +388,14 @@ class _PathItem implements PathItem {
 /// The field name MUST begin with x-, for example, x-internal-id.
 /// The value can be null, a primitive, an array or an object.
 /// See Vendor Extensions for further details.
+/// Vendor extensions (keys like `x-*`).
  final  Map<String, dynamic>? _extensions;
 /// Allows extensions to the Swagger Schema.
 /// The field name MUST begin with x-, for example, x-internal-id.
 /// The value can be null, a primitive, an array or an object.
 /// See Vendor Extensions for further details.
-@override Map<String, dynamic>? get extensions {
+/// Vendor extensions (keys like `x-*`).
+@override@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? get extensions {
   final value = _extensions;
   if (value == null) return null;
   if (_extensions is EqualUnmodifiableMapView) return _extensions;
@@ -434,7 +437,7 @@ abstract mixin class _$PathItemCopyWith<$Res> implements $PathItemCopyWith<$Res>
   factory _$PathItemCopyWith(_PathItem value, $Res Function(_PathItem) _then) = __$PathItemCopyWithImpl;
 @override @useResult
 $Res call({
- Operation? get, Operation? post, Operation? put, Operation? delete, Operation? patch, Operation? options, Operation? head, Operation? trace,@JsonKey(name: r'$ref') String? ref, List<Parameter>? parameters, Map<String, dynamic>? extensions
+ Operation? get, Operation? post, Operation? put, Operation? delete, Operation? patch, Operation? options, Operation? head, Operation? trace,@JsonKey(name: r'$ref') String? ref, List<Parameter>? parameters,@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? extensions
 });
 
 

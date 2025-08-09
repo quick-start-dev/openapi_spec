@@ -23,8 +23,8 @@ mixin _$SecurityScheme {
  String? get scheme;/// A hint to the client to identify the bearer token format.
  String? get bearerFormat;/// Configuration information for the flow types supported.
  OAuthFlows? get flows;/// Well-known URL to discover the OpenID Connect provider metadata.
- String? get openIdConnectUrl;/// A map of OpenAPI extensions.
-@JsonKey(includeToJson: false, includeFromJson: false) Map<String, dynamic>? get extensions;
+ String? get openIdConnectUrl;/// Vendor extensions (keys like `x-*`).
+@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? get extensions;
 /// Create a copy of SecurityScheme
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -55,7 +55,7 @@ abstract mixin class $SecuritySchemeCopyWith<$Res>  {
   factory $SecuritySchemeCopyWith(SecurityScheme value, $Res Function(SecurityScheme) _then) = _$SecuritySchemeCopyWithImpl;
 @useResult
 $Res call({
- String type, String? description, String? name,@JsonKey(name: 'in') ParameterLocation? location, String? scheme, String? bearerFormat, OAuthFlows? flows, String? openIdConnectUrl,@JsonKey(includeToJson: false, includeFromJson: false) Map<String, dynamic>? extensions
+ String type, String? description, String? name,@JsonKey(name: 'in') ParameterLocation? location, String? scheme, String? bearerFormat, OAuthFlows? flows, String? openIdConnectUrl,@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? extensions
 });
 
 
@@ -180,7 +180,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String type,  String? description,  String? name, @JsonKey(name: 'in')  ParameterLocation? location,  String? scheme,  String? bearerFormat,  OAuthFlows? flows,  String? openIdConnectUrl, @JsonKey(includeToJson: false, includeFromJson: false)  Map<String, dynamic>? extensions)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String type,  String? description,  String? name, @JsonKey(name: 'in')  ParameterLocation? location,  String? scheme,  String? bearerFormat,  OAuthFlows? flows,  String? openIdConnectUrl, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SecurityScheme() when $default != null:
 return $default(_that.type,_that.description,_that.name,_that.location,_that.scheme,_that.bearerFormat,_that.flows,_that.openIdConnectUrl,_that.extensions);case _:
@@ -201,7 +201,7 @@ return $default(_that.type,_that.description,_that.name,_that.location,_that.sch
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String type,  String? description,  String? name, @JsonKey(name: 'in')  ParameterLocation? location,  String? scheme,  String? bearerFormat,  OAuthFlows? flows,  String? openIdConnectUrl, @JsonKey(includeToJson: false, includeFromJson: false)  Map<String, dynamic>? extensions)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String type,  String? description,  String? name, @JsonKey(name: 'in')  ParameterLocation? location,  String? scheme,  String? bearerFormat,  OAuthFlows? flows,  String? openIdConnectUrl, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)  $default,) {final _that = this;
 switch (_that) {
 case _SecurityScheme():
 return $default(_that.type,_that.description,_that.name,_that.location,_that.scheme,_that.bearerFormat,_that.flows,_that.openIdConnectUrl,_that.extensions);case _:
@@ -221,7 +221,7 @@ return $default(_that.type,_that.description,_that.name,_that.location,_that.sch
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String type,  String? description,  String? name, @JsonKey(name: 'in')  ParameterLocation? location,  String? scheme,  String? bearerFormat,  OAuthFlows? flows,  String? openIdConnectUrl, @JsonKey(includeToJson: false, includeFromJson: false)  Map<String, dynamic>? extensions)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String type,  String? description,  String? name, @JsonKey(name: 'in')  ParameterLocation? location,  String? scheme,  String? bearerFormat,  OAuthFlows? flows,  String? openIdConnectUrl, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)?  $default,) {final _that = this;
 switch (_that) {
 case _SecurityScheme() when $default != null:
 return $default(_that.type,_that.description,_that.name,_that.location,_that.scheme,_that.bearerFormat,_that.flows,_that.openIdConnectUrl,_that.extensions);case _:
@@ -236,7 +236,7 @@ return $default(_that.type,_that.description,_that.name,_that.location,_that.sch
 
 @JsonSerializable(includeIfNull: false, explicitToJson: true)
 class _SecurityScheme extends SecurityScheme {
-  const _SecurityScheme({required this.type, this.description, this.name, @JsonKey(name: 'in') this.location, this.scheme, this.bearerFormat, this.flows, this.openIdConnectUrl, @JsonKey(includeToJson: false, includeFromJson: false) final  Map<String, dynamic>? extensions}): _extensions = extensions,super._();
+  const _SecurityScheme({required this.type, this.description, this.name, @JsonKey(name: 'in') this.location, this.scheme, this.bearerFormat, this.flows, this.openIdConnectUrl, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) final  Map<String, dynamic>? extensions}): _extensions = extensions,super._();
   factory _SecurityScheme.fromJson(Map<String, dynamic> json) => _$SecuritySchemeFromJson(json);
 
 /// The type of the security scheme.
@@ -255,10 +255,10 @@ class _SecurityScheme extends SecurityScheme {
 @override final  OAuthFlows? flows;
 /// Well-known URL to discover the OpenID Connect provider metadata.
 @override final  String? openIdConnectUrl;
-/// A map of OpenAPI extensions.
+/// Vendor extensions (keys like `x-*`).
  final  Map<String, dynamic>? _extensions;
-/// A map of OpenAPI extensions.
-@override@JsonKey(includeToJson: false, includeFromJson: false) Map<String, dynamic>? get extensions {
+/// Vendor extensions (keys like `x-*`).
+@override@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? get extensions {
   final value = _extensions;
   if (value == null) return null;
   if (_extensions is EqualUnmodifiableMapView) return _extensions;
@@ -297,7 +297,7 @@ abstract mixin class _$SecuritySchemeCopyWith<$Res> implements $SecuritySchemeCo
   factory _$SecuritySchemeCopyWith(_SecurityScheme value, $Res Function(_SecurityScheme) _then) = __$SecuritySchemeCopyWithImpl;
 @override @useResult
 $Res call({
- String type, String? description, String? name,@JsonKey(name: 'in') ParameterLocation? location, String? scheme, String? bearerFormat, OAuthFlows? flows, String? openIdConnectUrl,@JsonKey(includeToJson: false, includeFromJson: false) Map<String, dynamic>? extensions
+ String type, String? description, String? name,@JsonKey(name: 'in') ParameterLocation? location, String? scheme, String? bearerFormat, OAuthFlows? flows, String? openIdConnectUrl,@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? extensions
 });
 
 

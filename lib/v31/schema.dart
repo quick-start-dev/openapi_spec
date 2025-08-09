@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:openapi_spec/v31/discriminator.dart';
-import 'package:openapi_spec/v31/external_docs.dart';
-import 'package:openapi_spec/v31/xml.dart';
+import 'package:openapi_spec_plus/v31/discriminator.dart';
+import 'package:openapi_spec_plus/v31/external_docs.dart';
+import 'package:openapi_spec_plus/v31/xml.dart';
 
 part 'schema.freezed.dart';
 part 'schema.g.dart';

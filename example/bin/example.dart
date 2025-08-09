@@ -1,9 +1,9 @@
 import 'package:args/args.dart';
 import 'dart:developer';
 
-import 'package:openapi_spec/v20.dart' as v20;
-import 'package:openapi_spec/v30.dart' as v30;
-import 'package:openapi_spec/v31.dart' as v31;
+import 'package:openapi_spec_plus/v20.dart' as v20;
+import 'package:openapi_spec_plus/v30.dart' as v30;
+import 'package:openapi_spec_plus/v31.dart' as v31;
 
 const String version = '0.0.1';
 

@@ -1,10 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:openapi_spec/v31/external_docs.dart';
-import 'package:openapi_spec/v31/parameter.dart';
-import 'package:openapi_spec/v31/request_body.dart';
-import 'package:openapi_spec/v31/response.dart';
-import 'package:openapi_spec/v31/security.dart';
-import 'package:openapi_spec/v31/server.dart';
+import 'package:openapi_spec_plus/v31/external_docs.dart';
+import 'package:openapi_spec_plus/v31/parameter.dart';
+import 'package:openapi_spec_plus/v31/request_body.dart';
+import 'package:openapi_spec_plus/v31/response.dart';
+import 'package:openapi_spec_plus/v31/security.dart';
+import 'package:openapi_spec_plus/v31/server.dart';
 
 part 'operation.freezed.dart';
 part 'operation.g.dart';

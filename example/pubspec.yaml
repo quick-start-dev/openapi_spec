@@ -11,7 +11,7 @@ environment:
 # Add regular dependencies here.
 dependencies:
   args: ^2.5.0
-  openapi_spec:
+  openapi_spec_plus:
     path: ../
 dev_dependencies:
   lints: ^5.0.0

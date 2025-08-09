@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:openapi_spec/v20/operation.dart';
-import 'package:openapi_spec/v20/parameter.dart';
+import 'package:openapi_spec_plus/v20/operation.dart';
+import 'package:openapi_spec_plus/v20/parameter.dart';
 part 'path.freezed.dart';
 part 'path.g.dart';
 

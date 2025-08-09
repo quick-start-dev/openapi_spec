@@ -25,8 +25,8 @@ mixin _$OpenAPI {
  Components? get components;/// A declaration of which security schemes are required for the entire API.
  List<SecurityRequirement> get security;/// A list of tags for API documentation.
  List<Tag> get tags;/// Additional external documentation for the API.
- ExternalDocs? get externalDocs;/// A map of OpenAPI extensions.
- Map<String, dynamic>? get extensions;
+ ExternalDocs? get externalDocs;/// Vendor extensions (keys like `x-*`).
+@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? get extensions;
 /// Create a copy of OpenAPI
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -57,7 +57,7 @@ abstract mixin class $OpenAPICopyWith<$Res>  {
   factory $OpenAPICopyWith(OpenAPI value, $Res Function(OpenAPI) _then) = _$OpenAPICopyWithImpl;
 @useResult
 $Res call({
- String openapi, Info? info, List<Server> servers, Map<String, PathItem> paths, Components? components, List<SecurityRequirement> security, List<Tag> tags, ExternalDocs? externalDocs, Map<String, dynamic>? extensions
+ String openapi, Info? info, List<Server> servers, Map<String, PathItem> paths, Components? components, List<SecurityRequirement> security, List<Tag> tags, ExternalDocs? externalDocs,@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? extensions
 });
 
 
@@ -206,7 +206,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String openapi,  Info? info,  List<Server> servers,  Map<String, PathItem> paths,  Components? components,  List<SecurityRequirement> security,  List<Tag> tags,  ExternalDocs? externalDocs,  Map<String, dynamic>? extensions)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String openapi,  Info? info,  List<Server> servers,  Map<String, PathItem> paths,  Components? components,  List<SecurityRequirement> security,  List<Tag> tags,  ExternalDocs? externalDocs, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _OpenAPI() when $default != null:
 return $default(_that.openapi,_that.info,_that.servers,_that.paths,_that.components,_that.security,_that.tags,_that.externalDocs,_that.extensions);case _:
@@ -227,7 +227,7 @@ return $default(_that.openapi,_that.info,_that.servers,_that.paths,_that.compone
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String openapi,  Info? info,  List<Server> servers,  Map<String, PathItem> paths,  Components? components,  List<SecurityRequirement> security,  List<Tag> tags,  ExternalDocs? externalDocs,  Map<String, dynamic>? extensions)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String openapi,  Info? info,  List<Server> servers,  Map<String, PathItem> paths,  Components? components,  List<SecurityRequirement> security,  List<Tag> tags,  ExternalDocs? externalDocs, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)  $default,) {final _that = this;
 switch (_that) {
 case _OpenAPI():
 return $default(_that.openapi,_that.info,_that.servers,_that.paths,_that.components,_that.security,_that.tags,_that.externalDocs,_that.extensions);case _:
@@ -247,7 +247,7 @@ return $default(_that.openapi,_that.info,_that.servers,_that.paths,_that.compone
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String openapi,  Info? info,  List<Server> servers,  Map<String, PathItem> paths,  Components? components,  List<SecurityRequirement> security,  List<Tag> tags,  ExternalDocs? externalDocs,  Map<String, dynamic>? extensions)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String openapi,  Info? info,  List<Server> servers,  Map<String, PathItem> paths,  Components? components,  List<SecurityRequirement> security,  List<Tag> tags,  ExternalDocs? externalDocs, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)?  $default,) {final _that = this;
 switch (_that) {
 case _OpenAPI() when $default != null:
 return $default(_that.openapi,_that.info,_that.servers,_that.paths,_that.components,_that.security,_that.tags,_that.externalDocs,_that.extensions);case _:
@@ -262,7 +262,7 @@ return $default(_that.openapi,_that.info,_that.servers,_that.paths,_that.compone
 
 @JsonSerializable(includeIfNull: false, explicitToJson: true)
 class _OpenAPI extends OpenAPI {
-  const _OpenAPI({required this.openapi, this.info, final  List<Server> servers = const [], final  Map<String, PathItem> paths = const {}, this.components, final  List<SecurityRequirement> security = const [], final  List<Tag> tags = const [], this.externalDocs, final  Map<String, dynamic>? extensions}): _servers = servers,_paths = paths,_security = security,_tags = tags,_extensions = extensions,super._();
+  const _OpenAPI({required this.openapi, this.info, final  List<Server> servers = const [], final  Map<String, PathItem> paths = const {}, this.components, final  List<SecurityRequirement> security = const [], final  List<Tag> tags = const [], this.externalDocs, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) final  Map<String, dynamic>? extensions}): _servers = servers,_paths = paths,_security = security,_tags = tags,_extensions = extensions,super._();
   factory _OpenAPI.fromJson(Map<String, dynamic> json) => _$OpenAPIFromJson(json);
 
 /// The version of the OpenAPI specification.
@@ -312,10 +312,10 @@ class _OpenAPI extends OpenAPI {
 
 /// Additional external documentation for the API.
 @override final  ExternalDocs? externalDocs;
-/// A map of OpenAPI extensions.
+/// Vendor extensions (keys like `x-*`).
  final  Map<String, dynamic>? _extensions;
-/// A map of OpenAPI extensions.
-@override Map<String, dynamic>? get extensions {
+/// Vendor extensions (keys like `x-*`).
+@override@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? get extensions {
   final value = _extensions;
   if (value == null) return null;
   if (_extensions is EqualUnmodifiableMapView) return _extensions;
@@ -354,7 +354,7 @@ abstract mixin class _$OpenAPICopyWith<$Res> implements $OpenAPICopyWith<$Res> {
   factory _$OpenAPICopyWith(_OpenAPI value, $Res Function(_OpenAPI) _then) = __$OpenAPICopyWithImpl;
 @override @useResult
 $Res call({
- String openapi, Info? info, List<Server> servers, Map<String, PathItem> paths, Components? components, List<SecurityRequirement> security, List<Tag> tags, ExternalDocs? externalDocs, Map<String, dynamic>? extensions
+ String openapi, Info? info, List<Server> servers, Map<String, PathItem> paths, Components? components, List<SecurityRequirement> security, List<Tag> tags, ExternalDocs? externalDocs,@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? extensions
 });
 
 

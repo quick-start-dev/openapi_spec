@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:openapi_spec/src/util/yaml_utils.dart' show yamlToMap;
-import 'package:openapi_spec/v30/openapi_spec.dart';
+import 'package:openapi_spec_plus/src/util/yaml_utils.dart' show yamlToMap;
+import 'package:openapi_spec_plus/v30/openapi_spec.dart';
 
 /// Utility class to parse OpenAPI specs
 class OpenAPIParser {

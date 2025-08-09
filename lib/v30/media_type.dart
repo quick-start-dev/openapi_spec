@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:openapi_spec/v30/encoding.dart';
-import 'package:openapi_spec/v30/example.dart';
-import 'package:openapi_spec/v30/schema.dart';
+import 'package:openapi_spec_plus/v30/encoding.dart';
+import 'package:openapi_spec_plus/v30/example.dart';
+import 'package:openapi_spec_plus/v30/schema.dart';
 
 part 'media_type.freezed.dart';
 part 'media_type.g.dart';

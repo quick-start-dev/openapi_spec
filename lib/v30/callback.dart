@@ -1,5 +1,5 @@
 import 'package:meta/meta.dart';
-import 'package:openapi_spec/v30/path.dart';
+import 'package:openapi_spec_plus/v30/path.dart';
 
 /// A map of possible out-of-band callbacks related to the parent operation.
 ///

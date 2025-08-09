@@ -23,7 +23,7 @@ mixin _$Components {
  Map<String, SecurityScheme>? get securitySchemes;/// The headers available for reuse.
  Map<String, Header>? get headers;/// An object to hold reusable Link Objects.
  Map<String, Link>? get links;/// The callbacks available for reuse.
- Map<String, Callback>? get callbacks;/// The OpenAPI extensions available for reuse.
+ Map<String, Callback>? get callbacks;/// Vendor extensions (keys like `x-*`).
 @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? get extensions;/// An object to hold reusable Example Objects.
  Map<String, Example>? get examples;
 /// Create a copy of Components
@@ -317,9 +317,9 @@ class _Components extends Components {
   return EqualUnmodifiableMapView(value);
 }
 
-/// The OpenAPI extensions available for reuse.
+/// Vendor extensions (keys like `x-*`).
  final  Map<String, dynamic>? _extensions;
-/// The OpenAPI extensions available for reuse.
+/// Vendor extensions (keys like `x-*`).
 @override@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? get extensions {
   final value = _extensions;
   if (value == null) return null;

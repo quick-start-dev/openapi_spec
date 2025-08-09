@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:openapi_spec/v30/server.dart';
+import 'package:openapi_spec_plus/v30/server.dart';
 
 part 'link.freezed.dart';
 part 'link.g.dart';

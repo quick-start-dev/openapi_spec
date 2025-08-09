@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:openapi_spec/v20/schema.dart';
+import 'package:openapi_spec_plus/v20/schema.dart';
 
 part 'header.freezed.dart';
 part 'header.g.dart';

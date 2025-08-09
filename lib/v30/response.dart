@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:openapi_spec/v30/header.dart';
-import 'package:openapi_spec/v30/link.dart';
-import 'package:openapi_spec/v30/media_type.dart';
+import 'package:openapi_spec_plus/v30/header.dart';
+import 'package:openapi_spec_plus/v30/link.dart';
+import 'package:openapi_spec_plus/v30/media_type.dart';
 
 part 'response.freezed.dart';
 part 'response.g.dart';

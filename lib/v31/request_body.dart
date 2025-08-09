@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:openapi_spec/v31/media_type.dart';
+import 'package:openapi_spec_plus/v31/media_type.dart';
 
 part 'request_body.freezed.dart';
 part 'request_body.g.dart';

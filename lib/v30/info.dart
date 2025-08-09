@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:openapi_spec/v30/contact.dart';
-import 'package:openapi_spec/v30/license.dart';
+import 'package:openapi_spec_plus/v30/contact.dart';
+import 'package:openapi_spec_plus/v30/license.dart';
 
 part 'info.freezed.dart';
 part 'info.g.dart';

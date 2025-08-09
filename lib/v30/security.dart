@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:openapi_spec/src/util/enums.dart' show ParameterLocation;
+import 'package:openapi_spec_plus/src/util/enums.dart' show ParameterLocation;
 
 part 'security.freezed.dart';
 part 'security.g.dart';

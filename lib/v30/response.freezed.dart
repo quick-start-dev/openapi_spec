@@ -21,8 +21,8 @@ mixin _$Response {
  Map<String, Header>? get headers;/// A map of operations links that can be followed from the response.
 /// The key of the map is a short name for the link,
 /// following the naming constraints of the names for Component Objects.
- Map<String, Link>? get links;/// A map of OpenAPI extensions.
-@JsonKey(includeToJson: false, includeFromJson: false) Map<String, dynamic>? get extensions;
+ Map<String, Link>? get links;/// Vendor extensions (keys like `x-*`).
+@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? get extensions;
 /// Create a copy of Response
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -53,7 +53,7 @@ abstract mixin class $ResponseCopyWith<$Res>  {
   factory $ResponseCopyWith(Response value, $Res Function(Response) _then) = _$ResponseCopyWithImpl;
 @useResult
 $Res call({
- String description, Map<String, MediaType>? content, Map<String, Header>? headers, Map<String, Link>? links,@JsonKey(includeToJson: false, includeFromJson: false) Map<String, dynamic>? extensions
+ String description, Map<String, MediaType>? content, Map<String, Header>? headers, Map<String, Link>? links,@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? extensions
 });
 
 
@@ -162,7 +162,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String description,  Map<String, MediaType>? content,  Map<String, Header>? headers,  Map<String, Link>? links, @JsonKey(includeToJson: false, includeFromJson: false)  Map<String, dynamic>? extensions)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String description,  Map<String, MediaType>? content,  Map<String, Header>? headers,  Map<String, Link>? links, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Response() when $default != null:
 return $default(_that.description,_that.content,_that.headers,_that.links,_that.extensions);case _:
@@ -183,7 +183,7 @@ return $default(_that.description,_that.content,_that.headers,_that.links,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String description,  Map<String, MediaType>? content,  Map<String, Header>? headers,  Map<String, Link>? links, @JsonKey(includeToJson: false, includeFromJson: false)  Map<String, dynamic>? extensions)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String description,  Map<String, MediaType>? content,  Map<String, Header>? headers,  Map<String, Link>? links, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)  $default,) {final _that = this;
 switch (_that) {
 case _Response():
 return $default(_that.description,_that.content,_that.headers,_that.links,_that.extensions);case _:
@@ -203,7 +203,7 @@ return $default(_that.description,_that.content,_that.headers,_that.links,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String description,  Map<String, MediaType>? content,  Map<String, Header>? headers,  Map<String, Link>? links, @JsonKey(includeToJson: false, includeFromJson: false)  Map<String, dynamic>? extensions)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String description,  Map<String, MediaType>? content,  Map<String, Header>? headers,  Map<String, Link>? links, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)?  $default,) {final _that = this;
 switch (_that) {
 case _Response() when $default != null:
 return $default(_that.description,_that.content,_that.headers,_that.links,_that.extensions);case _:
@@ -218,7 +218,7 @@ return $default(_that.description,_that.content,_that.headers,_that.links,_that.
 
 @JsonSerializable(includeIfNull: false, explicitToJson: true)
 class _Response extends Response {
-  const _Response({required this.description, final  Map<String, MediaType>? content, final  Map<String, Header>? headers, final  Map<String, Link>? links, @JsonKey(includeToJson: false, includeFromJson: false) final  Map<String, dynamic>? extensions}): _content = content,_headers = headers,_links = links,_extensions = extensions,super._();
+  const _Response({required this.description, final  Map<String, MediaType>? content, final  Map<String, Header>? headers, final  Map<String, Link>? links, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) final  Map<String, dynamic>? extensions}): _content = content,_headers = headers,_links = links,_extensions = extensions,super._();
   factory _Response.fromJson(Map<String, dynamic> json) => _$ResponseFromJson(json);
 
 /// A brief description of the response.
@@ -260,10 +260,10 @@ class _Response extends Response {
   return EqualUnmodifiableMapView(value);
 }
 
-/// A map of OpenAPI extensions.
+/// Vendor extensions (keys like `x-*`).
  final  Map<String, dynamic>? _extensions;
-/// A map of OpenAPI extensions.
-@override@JsonKey(includeToJson: false, includeFromJson: false) Map<String, dynamic>? get extensions {
+/// Vendor extensions (keys like `x-*`).
+@override@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? get extensions {
   final value = _extensions;
   if (value == null) return null;
   if (_extensions is EqualUnmodifiableMapView) return _extensions;
@@ -302,7 +302,7 @@ abstract mixin class _$ResponseCopyWith<$Res> implements $ResponseCopyWith<$Res>
   factory _$ResponseCopyWith(_Response value, $Res Function(_Response) _then) = __$ResponseCopyWithImpl;
 @override @useResult
 $Res call({
- String description, Map<String, MediaType>? content, Map<String, Header>? headers, Map<String, Link>? links,@JsonKey(includeToJson: false, includeFromJson: false) Map<String, dynamic>? extensions
+ String description, Map<String, MediaType>? content, Map<String, Header>? headers, Map<String, Link>? links,@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? extensions
 });
 
 
