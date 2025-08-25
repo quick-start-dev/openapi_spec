@@ -19,7 +19,7 @@ mixin _$License {
  String get name;/// An SPDX license expression for the API.
 /// The identifier field is mutually exclusive of the url field.
  String? get identifier;/// A URL to the license information.
-@JsonKey(includeIfNull: false) String? get url;
+ String? get url;
 /// Create a copy of License
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -52,7 +52,7 @@ abstract mixin class $LicenseCopyWith<$Res>  {
   factory $LicenseCopyWith(License value, $Res Function(License) _then) = _$LicenseCopyWithImpl;
 @useResult
 $Res call({
- String name, String? identifier,@JsonKey(includeIfNull: false) String? url
+ String name, String? identifier, String? url
 });
 
 
@@ -159,7 +159,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String? identifier, @JsonKey(includeIfNull: false)  String? url)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  String? identifier,  String? url)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _License() when $default != null:
 return $default(_that.name,_that.identifier,_that.url);case _:
@@ -180,7 +180,7 @@ return $default(_that.name,_that.identifier,_that.url);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String? identifier, @JsonKey(includeIfNull: false)  String? url)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  String? identifier,  String? url)  $default,) {final _that = this;
 switch (_that) {
 case _License():
 return $default(_that.name,_that.identifier,_that.url);case _:
@@ -200,7 +200,7 @@ return $default(_that.name,_that.identifier,_that.url);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String? identifier, @JsonKey(includeIfNull: false)  String? url)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  String? identifier,  String? url)?  $default,) {final _that = this;
 switch (_that) {
 case _License() when $default != null:
 return $default(_that.name,_that.identifier,_that.url);case _:
@@ -212,10 +212,10 @@ return $default(_that.name,_that.identifier,_that.url);case _:
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(includeIfNull: false)
 class _License implements License {
-  const _License({required this.name, this.identifier, @JsonKey(includeIfNull: false) this.url});
+  const _License({required this.name, this.identifier, this.url});
   factory _License.fromJson(Map<String, dynamic> json) => _$LicenseFromJson(json);
 
 /// The name of the license.
@@ -224,7 +224,7 @@ class _License implements License {
 /// The identifier field is mutually exclusive of the url field.
 @override final  String? identifier;
 /// A URL to the license information.
-@override@JsonKey(includeIfNull: false) final  String? url;
+@override final  String? url;
 
 /// Create a copy of License
 /// with the given fields replaced by the non-null parameter values.
@@ -259,7 +259,7 @@ abstract mixin class _$LicenseCopyWith<$Res> implements $LicenseCopyWith<$Res> {
   factory _$LicenseCopyWith(_License value, $Res Function(_License) _then) = __$LicenseCopyWithImpl;
 @override @useResult
 $Res call({
- String name, String? identifier,@JsonKey(includeIfNull: false) String? url
+ String name, String? identifier, String? url
 });
 
 

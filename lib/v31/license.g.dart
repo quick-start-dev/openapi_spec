@@ -14,6 +14,6 @@ _License _$LicenseFromJson(Map<String, dynamic> json) => _License(
 
 Map<String, dynamic> _$LicenseToJson(_License instance) => <String, dynamic>{
   'name': instance.name,
-  'identifier': instance.identifier,
+  if (instance.identifier case final value?) 'identifier': value,
   if (instance.url case final value?) 'url': value,
 };

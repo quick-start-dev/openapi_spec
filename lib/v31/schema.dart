@@ -8,7 +8,7 @@ part 'schema.freezed.dart';
 part 'schema.g.dart';
 
 /// The **Schema** Object allows the definition of input and output data types
-/// for OpenAPI 2.0.
+/// for OpenAPI 3.1.
 ///
 /// It describes the data type, format, constraints, and structure of
 /// properties, request bodies, and other parts of the OpenAPI specification.
@@ -233,6 +233,10 @@ abstract class Schema with _$Schema {
     List<dynamic>? examples,
     bool? readOnly,
     bool? writeOnly,
+    String? $default,
+    int? maxLength,
+    int? minLength,
+    String? pattern,
   }) => Schema(
     type: 'string',
     format: format,
@@ -241,6 +245,10 @@ abstract class Schema with _$Schema {
     examples: examples,
     readOnly: readOnly,
     writeOnly: writeOnly,
+    $default: $default,
+    minLength: minLength,
+    maxLength: maxLength,
+    pattern: pattern,
   );
 
   /// Creates a [Schema] for a string.
@@ -251,6 +259,10 @@ abstract class Schema with _$Schema {
     List<dynamic>? examples,
     bool? readOnly,
     bool? writeOnly,
+    String? $default,
+    int? maxLength,
+    int? minLength,
+    String? pattern,
   }) => Schema(
     type: ['string', 'null'],
     format: format,
@@ -259,6 +271,10 @@ abstract class Schema with _$Schema {
     examples: examples,
     readOnly: readOnly,
     writeOnly: writeOnly,
+    $default: $default,
+    minLength: minLength,
+    maxLength: maxLength,
+    pattern: pattern,
   );
 
   /// Creates a [Schema] for an integer.
@@ -274,6 +290,7 @@ abstract class Schema with _$Schema {
     num? exclusiveMinimum,
     bool? readOnly,
     bool? writeOnly,
+    int? $default,
   }) => Schema(
     type: 'integer',
     format: format,
@@ -287,7 +304,273 @@ abstract class Schema with _$Schema {
     exclusiveMinimum: exclusiveMinimum,
     readOnly: readOnly,
     writeOnly: writeOnly,
+    $default: $default,
   );
+
+  /// Creates a [Schema] for a nullable integer.
+  factory Schema.nullableInteger({
+    String? format,
+    String? title,
+    String? description,
+    List<dynamic>? examples,
+    num? maximum,
+    num? minimum,
+    num? multipleOf,
+    num? exclusiveMaximum,
+    num? exclusiveMinimum,
+    bool? readOnly,
+    bool? writeOnly,
+    int? $default,
+  }) => Schema(
+    type: ['integer', 'null'],
+    format: format,
+    title: title,
+    description: description,
+    examples: examples,
+    maximum: maximum,
+    minimum: minimum,
+    multipleOf: multipleOf,
+    exclusiveMaximum: exclusiveMaximum,
+    exclusiveMinimum: exclusiveMinimum,
+    readOnly: readOnly,
+    writeOnly: writeOnly,
+    $default: $default,
+  );
+
+  /// Creates a [Schema] for a number (float or double).
+  factory Schema.number({
+    String? format,
+    String? title,
+    String? description,
+    List<dynamic>? examples,
+    num? maximum,
+    num? minimum,
+    num? multipleOf,
+    num? exclusiveMaximum,
+    num? exclusiveMinimum,
+    bool? readOnly,
+    bool? writeOnly,
+    num? $default,
+  }) => Schema(
+    type: 'number',
+    format: format,
+    title: title,
+    description: description,
+    examples: examples,
+    maximum: maximum,
+    minimum: minimum,
+    multipleOf: multipleOf,
+    exclusiveMaximum: exclusiveMaximum,
+    exclusiveMinimum: exclusiveMinimum,
+    readOnly: readOnly,
+    writeOnly: writeOnly,
+    $default: $default,
+  );
+
+  /// Creates a [Schema] for a nullable number (float or double).
+  factory Schema.nullableNumber({
+    String? format,
+    String? title,
+    String? description,
+    List<dynamic>? examples,
+    num? maximum,
+    num? minimum,
+    num? multipleOf,
+    num? exclusiveMaximum,
+    num? exclusiveMinimum,
+    bool? readOnly,
+    bool? writeOnly,
+    num? $default,
+  }) => Schema(
+    type: ['number', 'null'],
+    format: format,
+    title: title,
+    description: description,
+    examples: examples,
+    maximum: maximum,
+    minimum: minimum,
+    multipleOf: multipleOf,
+    exclusiveMaximum: exclusiveMaximum,
+    exclusiveMinimum: exclusiveMinimum,
+    readOnly: readOnly,
+    writeOnly: writeOnly,
+    $default: $default,
+  );
+
+  /// Creates a [Schema] for a boolean.
+  factory Schema.boolean({
+    String? title,
+    String? description,
+    List<dynamic>? examples,
+    bool? readOnly,
+    bool? writeOnly,
+    bool? $default,
+  }) => Schema(
+    type: 'boolean',
+    title: title,
+    description: description,
+    examples: examples,
+    readOnly: readOnly,
+    writeOnly: writeOnly,
+    $default: $default,
+  );
+
+  /// Creates a [Schema] for a nullable boolean.
+  factory Schema.nullableBoolean({
+    String? title,
+    String? description,
+    List<dynamic>? examples,
+    bool? readOnly,
+    bool? writeOnly,
+    bool? $default,
+  }) => Schema(
+    type: ['boolean', 'null'],
+    title: title,
+    description: description,
+    examples: examples,
+    readOnly: readOnly,
+    writeOnly: writeOnly,
+    $default: $default,
+  );
+
+  /// Creates a [Schema] for an array.
+  factory Schema.array({
+    String? title,
+    String? description,
+    Schema? items,
+    List<dynamic>? examples,
+    bool? readOnly,
+    bool? writeOnly,
+    int? maxItems,
+    int? minItems,
+    bool? uniqueItems,
+    String? collectionFormat,
+    bool? allowEmptyValue,
+    List<dynamic>? $default,
+  }) => Schema(
+    type: 'array',
+    title: title,
+    description: description,
+    items: items,
+    examples: examples,
+    readOnly: readOnly,
+    writeOnly: writeOnly,
+    maxItems: maxItems,
+    minItems: minItems,
+    uniqueItems: uniqueItems,
+    collectionFormat: collectionFormat,
+    allowEmptyValue: allowEmptyValue,
+    $default: $default,
+  );
+
+  /// Creates a [Schema] for a nullable array.
+  factory Schema.nullableArray({
+    String? title,
+    String? description,
+    Schema? items,
+    List<dynamic>? examples,
+    bool? readOnly,
+    bool? writeOnly,
+    int? maxItems,
+    int? minItems,
+    bool? uniqueItems,
+    String? collectionFormat,
+    bool? allowEmptyValue,
+    List<dynamic>? $default,
+  }) => Schema(
+    type: ['array', 'null'],
+    title: title,
+    description: description,
+    items: items,
+    examples: examples,
+    readOnly: readOnly,
+    writeOnly: writeOnly,
+    maxItems: maxItems,
+    minItems: minItems,
+    uniqueItems: uniqueItems,
+    collectionFormat: collectionFormat,
+    allowEmptyValue: allowEmptyValue,
+    $default: $default,
+  );
+
+  /// Creates a [Schema] for an object.
+  factory Schema.object({
+    String? title,
+    String? description,
+    List<String>? $required,
+    Map<String, Schema>? properties,
+    dynamic additionalProperties,
+    Map<String, Schema>? patternProperties,
+    bool? unevaluatedProperties,
+    List<dynamic>? examples,
+    bool? readOnly,
+    bool? writeOnly,
+    int? maxProperties,
+    int? minProperties,
+    Map<String, dynamic>? $default,
+  }) => Schema(
+    type: 'object',
+    title: title,
+    description: description,
+    $required: $required,
+    properties: properties,
+    additionalProperties: additionalProperties,
+    patternProperties: patternProperties,
+    unevaluatedProperties: unevaluatedProperties,
+    examples: examples,
+    readOnly: readOnly,
+    writeOnly: writeOnly,
+    maxProperties: maxProperties,
+    minProperties: minProperties,
+    $default: $default,
+  );
+
+  /// Creates a [Schema] for a nullable object.
+  factory Schema.nullableObject({
+    String? title,
+    String? description,
+    List<String>? $required,
+    Map<String, Schema>? properties,
+    dynamic additionalProperties,
+    Map<String, Schema>? patternProperties,
+    bool? unevaluatedProperties,
+    List<dynamic>? examples,
+    bool? readOnly,
+    bool? writeOnly,
+    int? maxProperties,
+    int? minProperties,
+    Map<String, dynamic>? $default,
+  }) => Schema(
+    type: ['object', 'null'],
+    title: title,
+    description: description,
+    $required: $required,
+    properties: properties,
+    additionalProperties: additionalProperties,
+    patternProperties: patternProperties,
+    unevaluatedProperties: unevaluatedProperties,
+    examples: examples,
+    readOnly: readOnly,
+    writeOnly: writeOnly,
+    maxProperties: maxProperties,
+    minProperties: minProperties,
+    $default: $default,
+  );
+
+  /// Creates a [Schema] for a reference to another schema.
+  factory Schema.ref(String ref) => Schema(ref: ref);
+
+  /// Creates a [Schema] for a union of multiple schemas.
+  factory Schema.oneOf(List<Schema> schemas) => Schema(oneOf: schemas);
+
+  /// Creates a [Schema] for a union where all schemas must be valid.
+  factory Schema.allOf(List<Schema> schemas) => Schema(allOf: schemas);
+
+  /// Creates a [Schema] for a union where any of the schemas must be valid.
+  factory Schema.anyOf(List<Schema> schemas) => Schema(anyOf: schemas);
+
+  /// Creates a [Schema] with a constant value.
+  factory Schema.constant(dynamic value) => Schema(const$: value);
 
   /// Converts a [Schema] to a JSON object.
   Map<String, dynamic> toJson() {

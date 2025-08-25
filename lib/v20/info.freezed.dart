@@ -18,11 +18,11 @@ mixin _$Info {
 /// The title of the API.
  String get title;/// The version of the API.
  String get version;/// A short description of the API.
-@JsonKey(includeIfNull: false) String? get description;/// A URL to the API's terms of service.
-@JsonKey(includeIfNull: false) String? get termsOfService;/// The contact information for the API.
-@JsonKey(includeIfNull: false) Contact? get contact;/// The license information for the API.
-@JsonKey(includeIfNull: false) License? get license;/// A short summary of the API.
-@JsonKey(includeIfNull: false) String? get summary;/// Vendor extensions (keys like `x-*`).
+ String? get description;/// A URL to the API's terms of service.
+ String? get termsOfService;/// The contact information for the API.
+ Contact? get contact;/// The license information for the API.
+ License? get license;/// A short summary of the API.
+ String? get summary;/// Vendor extensions (keys like `x-*`).
 @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? get extensions;
 /// Create a copy of Info
 /// with the given fields replaced by the non-null parameter values.
@@ -56,7 +56,7 @@ abstract mixin class $InfoCopyWith<$Res>  {
   factory $InfoCopyWith(Info value, $Res Function(Info) _then) = _$InfoCopyWithImpl;
 @useResult
 $Res call({
- String title, String version,@JsonKey(includeIfNull: false) String? description,@JsonKey(includeIfNull: false) String? termsOfService,@JsonKey(includeIfNull: false) Contact? contact,@JsonKey(includeIfNull: false) License? license,@JsonKey(includeIfNull: false) String? summary,@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? extensions
+ String title, String version, String? description, String? termsOfService, Contact? contact, License? license, String? summary,@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? extensions
 });
 
 
@@ -192,7 +192,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title,  String version, @JsonKey(includeIfNull: false)  String? description, @JsonKey(includeIfNull: false)  String? termsOfService, @JsonKey(includeIfNull: false)  Contact? contact, @JsonKey(includeIfNull: false)  License? license, @JsonKey(includeIfNull: false)  String? summary, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title,  String version,  String? description,  String? termsOfService,  Contact? contact,  License? license,  String? summary, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Info() when $default != null:
 return $default(_that.title,_that.version,_that.description,_that.termsOfService,_that.contact,_that.license,_that.summary,_that.extensions);case _:
@@ -213,7 +213,7 @@ return $default(_that.title,_that.version,_that.description,_that.termsOfService
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title,  String version, @JsonKey(includeIfNull: false)  String? description, @JsonKey(includeIfNull: false)  String? termsOfService, @JsonKey(includeIfNull: false)  Contact? contact, @JsonKey(includeIfNull: false)  License? license, @JsonKey(includeIfNull: false)  String? summary, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title,  String version,  String? description,  String? termsOfService,  Contact? contact,  License? license,  String? summary, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)  $default,) {final _that = this;
 switch (_that) {
 case _Info():
 return $default(_that.title,_that.version,_that.description,_that.termsOfService,_that.contact,_that.license,_that.summary,_that.extensions);case _:
@@ -233,7 +233,7 @@ return $default(_that.title,_that.version,_that.description,_that.termsOfService
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title,  String version, @JsonKey(includeIfNull: false)  String? description, @JsonKey(includeIfNull: false)  String? termsOfService, @JsonKey(includeIfNull: false)  Contact? contact, @JsonKey(includeIfNull: false)  License? license, @JsonKey(includeIfNull: false)  String? summary, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title,  String version,  String? description,  String? termsOfService,  Contact? contact,  License? license,  String? summary, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)  Map<String, dynamic>? extensions)?  $default,) {final _that = this;
 switch (_that) {
 case _Info() when $default != null:
 return $default(_that.title,_that.version,_that.description,_that.termsOfService,_that.contact,_that.license,_that.summary,_that.extensions);case _:
@@ -245,10 +245,10 @@ return $default(_that.title,_that.version,_that.description,_that.termsOfService
 }
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class _Info implements Info {
-  const _Info({required this.title, required this.version, @JsonKey(includeIfNull: false) this.description, @JsonKey(includeIfNull: false) this.termsOfService, @JsonKey(includeIfNull: false) this.contact, @JsonKey(includeIfNull: false) this.license, @JsonKey(includeIfNull: false) this.summary, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) final  Map<String, dynamic>? extensions}): _extensions = extensions;
+  const _Info({required this.title, required this.version, this.description, this.termsOfService, this.contact, this.license, this.summary, @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) final  Map<String, dynamic>? extensions}): _extensions = extensions;
   factory _Info.fromJson(Map<String, dynamic> json) => _$InfoFromJson(json);
 
 /// The title of the API.
@@ -256,15 +256,15 @@ class _Info implements Info {
 /// The version of the API.
 @override final  String version;
 /// A short description of the API.
-@override@JsonKey(includeIfNull: false) final  String? description;
+@override final  String? description;
 /// A URL to the API's terms of service.
-@override@JsonKey(includeIfNull: false) final  String? termsOfService;
+@override final  String? termsOfService;
 /// The contact information for the API.
-@override@JsonKey(includeIfNull: false) final  Contact? contact;
+@override final  Contact? contact;
 /// The license information for the API.
-@override@JsonKey(includeIfNull: false) final  License? license;
+@override final  License? license;
 /// A short summary of the API.
-@override@JsonKey(includeIfNull: false) final  String? summary;
+@override final  String? summary;
 /// Vendor extensions (keys like `x-*`).
  final  Map<String, dynamic>? _extensions;
 /// Vendor extensions (keys like `x-*`).
@@ -310,7 +310,7 @@ abstract mixin class _$InfoCopyWith<$Res> implements $InfoCopyWith<$Res> {
   factory _$InfoCopyWith(_Info value, $Res Function(_Info) _then) = __$InfoCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String version,@JsonKey(includeIfNull: false) String? description,@JsonKey(includeIfNull: false) String? termsOfService,@JsonKey(includeIfNull: false) Contact? contact,@JsonKey(includeIfNull: false) License? license,@JsonKey(includeIfNull: false) String? summary,@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? extensions
+ String title, String version, String? description, String? termsOfService, Contact? contact, License? license, String? summary,@JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false) Map<String, dynamic>? extensions
 });
 
 

@@ -7,15 +7,16 @@ part 'contact.g.dart';
 @Freezed(copyWith: true, fromJson: true, toJson: true, equal: true)
 abstract class Contact with _$Contact {
   /// Creates a [Contact] object.
+  @JsonSerializable(includeIfNull: false)
   const factory Contact({
     /// The name of the contact person or organization.
-    @JsonKey(includeIfNull: false) String? name,
+    String? name,
 
     /// The URL pointing to the contact information.
-    @JsonKey(includeIfNull: false) String? url,
+    String? url,
 
     /// The email address of the contact person or organization.
-    @JsonKey(includeIfNull: false) String? email,
+    String? email,
   }) = _Contact;
 
   /// Creates a [Contact] from a JSON object.

@@ -38,6 +38,152 @@ void main() {
       matchSpecV31WithJson(spec, orgJson);
     });
   });
+
+  group('Schema constructors ', () {
+    test('Schema.object for a User model', () {
+      final userSchema = Schema.object(
+        title: 'User',
+        description: 'A user object in the system.',
+        $required: ['id', 'username', 'email'],
+        properties: {
+          'id': Schema.integer(format: 'int64', description: 'User ID'),
+          'username': Schema.string(description: 'Unique username'),
+          'email': Schema.string(
+            format: 'email',
+            description: 'User email address',
+          ),
+          'profile_image': Schema.nullableString(
+            format: 'uri',
+            description: 'URL to profile image',
+          ),
+          'is_active': Schema.boolean(
+            description: 'Account status',
+            $default: true,
+          ),
+        },
+      );
+
+      // Verify top-level properties
+      expect(userSchema.type, 'object');
+      expect(userSchema.title, 'User');
+      expect(userSchema.description, 'A user object in the system.');
+      expect(userSchema.$required, ['id', 'username', 'email']);
+
+      // Verify properties
+      final properties = userSchema.properties;
+      expect(properties, isNotNull);
+
+      // Test 'id' property
+      final idSchema = properties!['id'];
+      expect(idSchema, isNotNull);
+      expect(idSchema!.type, 'integer');
+      expect(idSchema.format, 'int64');
+
+      // Test 'username' property
+      final usernameSchema = properties['username'];
+      expect(usernameSchema, isNotNull);
+      expect(usernameSchema!.type, 'string');
+
+      // Test 'email' property
+      final emailSchema = properties['email'];
+      expect(emailSchema, isNotNull);
+      expect(emailSchema!.type, 'string');
+      expect(emailSchema.format, 'email');
+
+      // Test 'profile_image' property
+      final profileImageSchema = properties['profile_image'];
+      expect(profileImageSchema, isNotNull);
+      expect(profileImageSchema!.type, ['string', 'null']);
+      expect(profileImageSchema.format, 'uri');
+
+      // Test 'is_active' property
+      final isActiveSchema = properties['is_active'];
+      expect(isActiveSchema, isNotNull);
+      expect(isActiveSchema!.type, 'boolean');
+      expect(isActiveSchema.$default, true);
+    });
+
+    test('Schema.allOf for an Extended Product model', () {
+      final baseProductSchema = Schema.object(
+        properties: {
+          'product_id': Schema.string(format: 'uuid'),
+          'name': Schema.string(minLength: 3),
+          'price': Schema.number(minimum: 0, exclusiveMinimum: 0),
+        },
+        $required: ['product_id', 'name', 'price'],
+      );
+
+      final inventorySchema = Schema.object(
+        properties: {
+          'sku': Schema.string(),
+          'stock_level': Schema.integer(minimum: 0),
+        },
+      );
+
+      final productSchema = Schema.allOf([baseProductSchema, inventorySchema]);
+
+      // Verify allOf property
+      expect(productSchema.allOf, isNotNull);
+      expect(productSchema.allOf!.length, 2);
+
+      // Verify first allOf schema
+      final allOf1 = productSchema.allOf!.first;
+      expect(allOf1.properties, isNotNull);
+      expect(allOf1.properties!['product_id']!.type, 'string');
+
+      // Verify second allOf schema
+      final allOf2 = productSchema.allOf![1];
+      expect(allOf2.properties, isNotNull);
+      expect(allOf2.properties!['sku']!.type, 'string');
+    });
+
+    test('Schema.array for a list of OrderItems', () {
+      final orderItemSchema = Schema.object(
+        properties: {
+          'item_id': Schema.string(),
+          'quantity': Schema.integer(minimum: 1),
+        },
+        $required: ['item_id', 'quantity'],
+      );
+
+      final orderItemsSchema = Schema.array(
+        title: 'Order Items',
+        description: 'A list of items in an order.',
+        items: orderItemSchema,
+        minItems: 1,
+      );
+
+      // Verify array properties
+      expect(orderItemsSchema.type, 'array');
+      expect(orderItemsSchema.title, 'Order Items');
+      expect(orderItemsSchema.description, 'A list of items in an order.');
+      expect(orderItemsSchema.minItems, 1);
+
+      // Verify items schema
+      final itemsSchema = orderItemsSchema.items;
+      expect(itemsSchema, isNotNull);
+      expect(itemsSchema!.type, 'object');
+      expect(itemsSchema.$required, ['item_id', 'quantity']);
+      expect(itemsSchema.properties!['quantity']!.minimum, 1);
+    });
+
+    test('Schema.oneOf for a polymorphic Pet model', () {
+      final petSchema = Schema.oneOf([
+        Schema.ref('#/components/schemas/Dog'),
+        Schema.ref('#/components/schemas/Cat'),
+      ]).copyWith(
+        discriminator: const Discriminator(propertyName: 'petType'),
+        description: 'A polymorphic pet schema.',
+      );
+
+      // Verify oneOf and discriminator
+      expect(petSchema.oneOf, isNotNull);
+      expect(petSchema.oneOf!.length, 2);
+      expect(petSchema.oneOf!.first.ref, '#/components/schemas/Dog');
+      expect(petSchema.discriminator, isNotNull);
+      expect(petSchema.discriminator!.propertyName, 'petType');
+    });
+  });
 }
 
 void matchSpecV31WithJson(OpenAPI spec, Map<String, dynamic> orgJson) {

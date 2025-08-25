@@ -7,12 +7,13 @@ part 'license.g.dart';
 @Freezed(copyWith: true, fromJson: true, toJson: true, equal: true)
 abstract class License with _$License {
   /// Creates a [License] object.
+  @JsonSerializable(includeIfNull: false)
   const factory License({
     /// The name of the license.
     required String name,
 
     /// A URL to the license information.
-    @JsonKey(includeIfNull: false) String? url,
+    String? url,
   }) = _License;
 
   /// Creates a [License] from a JSON object.

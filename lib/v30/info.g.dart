@@ -27,7 +27,7 @@ Map<String, dynamic> _$InfoToJson(_Info instance) => <String, dynamic>{
   'version': instance.version,
   if (instance.description case final value?) 'description': value,
   if (instance.termsOfService case final value?) 'termsOfService': value,
-  if (instance.contact case final value?) 'contact': value,
-  if (instance.license case final value?) 'license': value,
+  if (instance.contact?.toJson() case final value?) 'contact': value,
+  if (instance.license?.toJson() case final value?) 'license': value,
   if (instance.summary case final value?) 'summary': value,
 };

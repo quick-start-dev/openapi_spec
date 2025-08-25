@@ -10,6 +10,7 @@ part 'info.g.dart';
 @Freezed(copyWith: true, fromJson: true, toJson: true, toStringOverride: true)
 abstract class Info with _$Info {
   /// Creates an instance of [Info].
+  @JsonSerializable(includeIfNull: false, explicitToJson: true)
   const factory Info({
     /// The title of the API.
     required String title,
@@ -18,19 +19,19 @@ abstract class Info with _$Info {
     required String version,
 
     /// A short description of the API.
-    @JsonKey(includeIfNull: false) String? description,
+    String? description,
 
     /// A URL to the API's terms of service.
-    @JsonKey(includeIfNull: false) String? termsOfService,
+    String? termsOfService,
 
     /// The contact information for the API.
-    @JsonKey(includeIfNull: false) Contact? contact,
+    Contact? contact,
 
     /// The license information for the API.
-    @JsonKey(includeIfNull: false) License? license,
+    License? license,
 
     /// A short summary of the API.
-    @JsonKey(includeIfNull: false) String? summary,
+    String? summary,
 
     /// Vendor extensions (keys like `x-*`).
     @JsonKey(includeIfNull: false, includeFromJson: false, includeToJson: false)
