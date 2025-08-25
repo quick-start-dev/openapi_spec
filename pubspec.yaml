@@ -1,6 +1,6 @@
 name: openapi_spec_plus
 description: A Dart library for parsing and working with OpenAPI Specifications (v2.0, v3.0, and v3.1).
-version: 0.5.0
+version: 0.6.0
 repository: https://github.com/quick-start-dev/openapi_spec
 
 environment:
